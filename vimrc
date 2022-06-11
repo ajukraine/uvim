@@ -161,7 +161,7 @@ set noshowmode
 
 if has_guicolors
 #   g:gruvbox_italicize_strings = 0
-#   g:gruvbox_bold = 0
+  g:gruvbox_bold = 0
 
 #   g:gruvbox_filetype_hi_groups = 1
 #   g:gruvbox_plugin_hi_groups = 0
