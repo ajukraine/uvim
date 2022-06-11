@@ -120,18 +120,18 @@ set laststatus=2
 
 g:battery#component_format = '%s %v%%'
 
-g:lightline = { }
-
-var right_side = [['battery'], ['clock'], ['fileformat', 'fileencoding', 'filetype']]
-g:lightline.active             = {'right': right_side }
-g:lightline.component          = {
-  'clock': '%{strftime("%b %d, %H:%M")}',
+g:lightline = {
+  active: {
+    right: [['battery'], ['clock'], ['fileformat', 'fileencoding', 'filetype']]
+  },
+  component: {
+    clock: '%{strftime("%b %d, %H:%M")}'
+  },
+  component_function: { 
+    battery: 'battery#component'
   }
-
+}
 #'gitbranch': 'gitbranch#name'
-g:lightline.component_function = { 
-  'battery': 'battery#component',
-  }
 
 # g:lightline.tabline            = { 'left': [['buffers']] }
 # g:lightline.component_expand   = { 'buffers': 'lightline#bufferline#buffers' }
