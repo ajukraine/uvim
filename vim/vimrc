@@ -88,7 +88,7 @@ set hidden
 
 autocmd FileType markdown setlocal nofoldenable
 
-# lua require('myconfig')
+lua require('aj.config')
 
 # Detect support of 'true colors'
 var has_guicolors = $COLORTERM == 'truecolor' && exists('+termguicolors') || has('gui_vimr') || exists('g:fvim_loaded')
