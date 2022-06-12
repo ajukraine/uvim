@@ -37,9 +37,9 @@ It consists of shared core config written in Lua, wrapped into Vim and Neovim sp
 ## TODO
 
 - [ ] Implement basic Vim version, by moving existing config to Lua
-  - [ ] options
+  - [x] options
   - [ ] key mappings
-  - [ ] automatic config reload on save
+  - [x] automatic Lua config reload on save
   - [ ] plugins
   - [ ] auto commands
   - [ ] logic around 'has_guicolors'

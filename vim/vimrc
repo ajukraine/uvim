@@ -82,19 +82,31 @@ Plug 'ryanoasis/vim-devicons'
 
 myplug.End()
 
-## ACTUAL CONFIG START
-set encoding=utf-8
-set hidden
-
 autocmd FileType markdown setlocal nofoldenable
 
-lua require('aj.config')
+autocmd! BufWritePost *.lua ++nested source $MYVIMRC
+
+lua << EOF
+package.loaded['aj.config'] = nil
+local config = require('aj.config')
+local options = config.options
+
+for name, value in pairs(options) do
+  if type(value) == type(true) then
+    if value == false then
+      name = 'no' .. name
+    end
+
+    vim.command('set ' .. name)
+  else
+    vim.command('set ' .. name .. '=' .. value)
+  end
+end
+
+EOF
 
 # Detect support of 'true colors'
 var has_guicolors = $COLORTERM == 'truecolor' && exists('+termguicolors') || has('gui_vimr') || exists('g:fvim_loaded')
-
-# Use dark theme if possible
-set background=dark
 
 # Make background transparent after color scheme is changed
 autocmd! Colorscheme * hi Normal guibg=NONE ctermbg=NONE
@@ -103,24 +115,10 @@ if has_guicolors
   set termguicolors
 endif
 
-# Avoid configuring Vim with special section on start and end of the opened file
-set modelines=0
-
-# Enable faster rendering (fount in https://gist.github.com/simonista/8703722)
-set ttyfast
-
-# Disable annoying bell sounds
-set belloff=all
-
-set title
-set splitright
 # set clipboard=unnamed
 
 syntax on
 filetype plugin indent on
-
-# Always display status line
-set laststatus=2
 
 g:battery#component_format = '%s %v%%'
 
@@ -155,10 +153,6 @@ def LightlineReload()
   lightline#colorscheme()
   lightline#update()
 enddef
-
-# Don't show current mode in the command line
-# Instead rely on statusline built-in or installed plugin
-set noshowmode
 
 # Fallback to built-in status line
 # set statusline=%<%f\ %y%h%m%r%=%-14.(%l,%c%V%)\ %P
@@ -197,45 +191,9 @@ endif
 #         \ endif
 # endif
 
-# Incrementally search while typing
-set incsearch
-# Use smart case for searching
-set ignorecase smartcase
-# Highlight searches
-set hlsearch
-
-# Enable mouse
-set mouse=a
-set ttymouse=xterm2
-
-# Enable backspace in Insert mode
-set backspace=2
-# Enable left/right arrows to move to prev/next lines in Normal, Visual, Insert and Replace modes
-set whichwrap+=<,>,[,]
-
-### Use spaces instead of tabs, and set them to 2
-set expandtab
-set shiftwidth=2
-set softtabstop=2
-
-# Always show some lines below and above the cursor when scrolling
-set scrolloff=5
-
-### Show vertical marking line, corresponding to 'textwidth'
-set textwidth=100
-set colorcolumn=+1
-
-### Show relative line numbers, special signs (like git signs) and cursorline
-set signcolumn=number
-set number relativenumber
-set cursorline
-
 ### Hide cursorline for inactive windows
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
-
-# Set separator for vertical split (there is space in the end after \)
-set fillchars+=vert:\ 
 
 ##-- FOLDING --
 #set foldmethod      = syntax # syntax highlighting items specify folds
@@ -243,19 +201,8 @@ set fillchars+=vert:\
 #let javaScript_fold = 1 # activate folding by JS syntax
 #set foldlevelstart  = 99 # start file with all folds opened
 
-# Set cursor shape depending on mode
-# (see more https://nickjanetakis.com/blog/change-your-vim-cursor-from-a-block-to-line-in-normal-and-insert-mode)
-&t_SI = "\e[6 q"
-&t_EI = "\e[2 q"
-
 # autocmd! User GoyoEnter Limelight
 # autocmd! User GoyoLeave Limelight!
-
-# Display completion menu for command line
-set wildmenu
-
-# Speed up slow switch/escape to 'normal' mode (see more https://vi.stackexchange.com/a/18472)
-set noesckeys
 
 ### Custom key bindings
 g:mapleader = ' '
