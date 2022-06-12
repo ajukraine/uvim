@@ -32,6 +32,9 @@ o.splitright = true
 -- Instead rely on statusline built-in or installed plugin
 o.noshowmode = true
 
+-- Use system clipboard by default
+o.clipboard = 'unnamed'
+
 -- Incrementally search while typing
 o.incsearch = true
 -- Use smart case for searching
@@ -80,5 +83,28 @@ o.wildmenu = true
 
 -- Speed up slow switch/escape to 'normal' mode (see more https://vi.stackexchange.com/a/18472)
 o.noesckeys = true
+
+M.custom_options = {
+  transparent_background = true,
+  colorscheme = 'gruvbox'
+}
+
+M.globals = {
+  ['battery#component_format'] = '%s %v%%',
+  ['lightline#bufferline#enable_devicons'] = 1,
+  lightline = {
+    colorscheme = M.custom_options.colorscheme,
+    active= {
+      right= {{'battery'}, {'clock'}, {'fileformat', 'fileencoding', 'filetype'}}
+    },
+    component= {
+      clock= '%{strftime("%b %d, %H:%M")}'
+    },
+    component_function = {
+      battery = 'battery#component'
+    }
+  },
+  gruvbox_bold = 0
+}
 
 return M

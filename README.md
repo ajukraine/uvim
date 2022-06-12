@@ -43,9 +43,9 @@ It consists of shared core config written in Lua, wrapped into Vim and Neovim sp
   - [ ] plugins
   - [ ] auto commands
   - [ ] logic around 'has_guicolors'
-  - [ ] colorscheme
+  - [x] colorscheme
   - [ ] syntax/filetype instructions
-  - [ ] global varibles
+  - [x] global varibles
   - [ ] functions
 - [ ] Define interface of 'aj.config' Lua module
 

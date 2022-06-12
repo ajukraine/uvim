@@ -51,9 +51,8 @@ autocmd! BufWritePost *.lua ++nested source $MYVIMRC
 lua << EOF
 package.loaded['aj.config'] = nil
 local config = require('aj.config')
-local options = config.options
 
-for name, value in pairs(options) do
+for name, value in pairs(config.options) do
   if type(value) == type(true) then
     if value == false then
       name = 'no' .. name
@@ -64,49 +63,40 @@ for name, value in pairs(options) do
     vim.command('set ' .. name .. '=' .. value)
   end
 end
+
+local function table2dict(tbl)
+  if type(tbl) == type({}) then
+    for key, value in pairs(tbl) do
+      tbl[key] = table2dict(value)
+    end
+    tbl = vim.dict(tbl)
+  end
+  return tbl
+end
+
+for name, value in pairs(config.globals) do
+  vim.g[name] = table2dict(value)
+end
 EOF
+
+var custom_options = luaeval('vim.dict(require("aj.config").custom_options)')
 
 # Detect support of 'true colors'
 var has_guicolors = $COLORTERM == 'truecolor' && exists('+termguicolors') || has('gui_vimr') || exists('g:fvim_loaded')
 
 # Make background transparent after color scheme is changed
-autocmd! Colorscheme * hi Normal guibg=NONE ctermbg=NONE
+if custom_options.transparent_background
+  autocmd! Colorscheme * hi Normal guibg=NONE ctermbg=NONE
+endif
 
 if has_guicolors
   set termguicolors
 endif
 
-# set clipboard=unnamed
+execute 'colorscheme ' .. custom_options.colorscheme
 
 syntax on
 filetype plugin indent on
-
-g:battery#component_format = '%s %v%%'
-
-g:lightline = {
-  active: {
-    right: [['battery'], ['clock'], ['fileformat', 'fileencoding', 'filetype']]
-  },
-  component: {
-    clock: '%{strftime("%b %d, %H:%M")}'
-  },
-  component_function: { 
-    battery: 'battery#component'
-  }
-}
-#'gitbranch': 'gitbranch#name'
-
-# g:lightline.tabline            = { 'left': [['buffers']] }
-# g:lightline.component_expand   = { 'buffers': 'lightline#bufferline#buffers' }
-# g:lightline.component_type     = { 'buffers': 'tabsel' }
-# g:lightline.subseparator       = { 'left': #\ue0b1#, 'right': #\ue0b3# }
-
-if has_guicolors
-  g:lightline.colorscheme = 'gruvbox'
-endif
-
-# g:lightline#bufferline#show_number = 1
-g:lightline#bufferline#enable_devicons = 1
 
 # Reloads lightline after changes to config
 def LightlineReload()
@@ -115,55 +105,9 @@ def LightlineReload()
   lightline#update()
 enddef
 
-# Fallback to built-in status line
-# set statusline=%<%f\ %y%h%m%r%=%-14.(%l,%c%V%)\ %P
-
-if has_guicolors
-#   g:gruvbox_italicize_strings = 0
-  g:gruvbox_bold = 0
-
-#   g:gruvbox_filetype_hi_groups = 1
-#   g:gruvbox_plugin_hi_groups = 0
-
-#   # Limelight can't automatically determine dim color when transparency is on
-#   g:gruvbox_transp_bg = 1
-#   g:limelight_conceal_ctermfg = 'DarkGrey'
-#   g:limelight_conceal_guifg = 'DarkGray'
-
-  colorscheme gruvbox
-else
-#   colorscheme monokai-bold
-endif
-
-
-# Exit Vim if NERDTree is the only window remaining in the only tab.
-# autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-# set omnifunc=syntaxcomplete#Complete
-# if has(#autocmd#) && exists(#+omnifunc#)
-#   # provides completion based syntax keywords
-#   autocmd Filetype *
-#         \ if &omnifunc == ## |
-#         \   setlocal omnifunc=syntaxcomplete#Complete |
-#         \ endif
-#   autocmd Filetype *
-#         \ if &omnifunc != '' |
-#         \   call SuperTabChain(&omnifunc, #<c-p>#) |
-#         \ endif
-# endif
-
 ### Hide cursorline for inactive windows
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
-
-##-- FOLDING --
-#set foldmethod      = syntax # syntax highlighting items specify folds
-#set foldcolumn      = 1      # defines 1 col at window left, to indicate folding
-#let javaScript_fold = 1 # activate folding by JS syntax
-#set foldlevelstart  = 99 # start file with all folds opened
-
-# autocmd! User GoyoEnter Limelight
-# autocmd! User GoyoLeave Limelight!
 
 ### Custom key bindings
 g:mapleader = ' '
@@ -172,25 +116,8 @@ nnoremap <leader>q     <Cmd>q<CR>
 nnoremap <leader>e     <Cmd>Lexplore<CR>
 nnoremap <Tab>         <cmd>bprev<cr>
 nnoremap ; :
-# nnoremap <leader>o     <Cmd>only<CR>
-# nnoremap <leader>d     <Cmd>bp\|bd #<CR>
-# nnoremap <expr>,       '<Cmd>b ' . v:count1 . '<CR>'
-# nnoremap <leader><Tab> <Cmd>bprev<CR>
-# noremap  <C-d>         <Cmd>NERDTreeToggleVCS<CR>
-# inoremap <C-d>         <Cmd>NERDTreeToggleVCS<CR>
-# nnoremap <leader>z     <Cmd>Goyo<CR>
-# nnoremap <leader>r     <Cmd>w<CR><Cmd>so %<cr>
 
 # Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 # # Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
-# g:comfortable_motion_no_default_key_mappings = 1
-# noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(20)<CR>
-# noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-20)<CR>
-
-# For GUI terminals
-# set guifont=FiraCode\ Nerd\ Font:h16
-
-# g:neovide_transparency=0.95
