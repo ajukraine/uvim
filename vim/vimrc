@@ -26,59 +26,21 @@ Plug 'lambdalisue/battery.vim'
 Plug 'fladson/vim-kitty'
 
 ### Color schemes
-# Plug 'embark-theme/vim', { 'as': 'embark' }
-# Plug 'artanikin/vim-synthwave84'
-# Plug 'ntk148v/vim-horizon'
-# Plug 'ajukraine/vim-monokai-bold'
 Plug 'morhetz/gruvbox'
-# Plug 'shinchu/lightline-gruvbox.vim'
 
 ### Editing assistance
-# Plug 'ervandew/supertab'
 Plug 'tpope/vim-commentary'
-# Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-unimpaired' #Magical key bindings like '[p [<Space>'
-# Plug 'prettier/vim-prettier', {
-#       \ 'do': 'npm install',
-#       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
-# Plug 'junegunn/goyo.vim'
-# Plug 'junegunn/limelight.vim'
 
 ### Syntax/Language support
-# Plug 'pangloss/vim-javascript'
-# Plug 'maxmellon/vim-jsx-pretty'
-# Plug 'digitaltoad/vim-pug'
-# Plug 'othree/html5.vim'
-# Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug'] }
 Plug 'iamcco/markdown-preview.nvim', { 'do' : { -> mkdp#util#install() }, 'for' : ['markdown', 'vim-plug'] }
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
-# Plug 'cespare/vim-toml', { 'branch': 'main' }
-# Plug 'sheerun/vim-polyglot'
-# Plug 'othree/yajs.vim'
-# Plug 'ionide/Ionide-vim', { 'do':  'make fsautocomplete' }
 
 ### Layout/Appearance
 Plug 'itchyny/lightline.vim'
-# Plug 'itchyny/vim-gitbranch'
-# Plug 'mengelbrecht/lightline-bufferline'
-# Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-# Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-### Motion and navation
-# Plug 'yuttie/comfortable-motion.vim'
-
-### Experimenal stuff
-# Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-# Plug 'roxma/vim-hug-neovim-rpc'
-# Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-# Plug 'deoplete-plugins/deoplete-lsp'
-# Plug 'neovim/nvim-lspconfig'
-
-### Supporting tools
-# Plug 'dstein64/vim-startuptime'
 
 myplug.End()
 
@@ -102,7 +64,6 @@ for name, value in pairs(options) do
     vim.command('set ' .. name .. '=' .. value)
   end
 end
-
 EOF
 
 # Detect support of 'true colors'
