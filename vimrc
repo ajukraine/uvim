@@ -51,7 +51,9 @@ Plug 'tpope/vim-unimpaired' #Magical key bindings like '[p [<Space>'
 # Plug 'digitaltoad/vim-pug'
 # Plug 'othree/html5.vim'
 # Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug'] }
-# Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'iamcco/markdown-preview.nvim', { 'do' : { -> mkdp#util#install() }, 'for' : ['markdown', 'vim-plug'] }
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 # Plug 'cespare/vim-toml', { 'branch': 'main' }
 # Plug 'sheerun/vim-polyglot'
 # Plug 'othree/yajs.vim'
@@ -83,6 +85,8 @@ myplug.End()
 ## ACTUAL CONFIG START
 set encoding=utf-8
 set hidden
+
+autocmd FileType markdown setlocal nofoldenable
 
 # lua require('myconfig')
 
