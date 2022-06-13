@@ -104,7 +104,22 @@ M.globals = {
       battery = 'battery#component'
     }
   },
-  gruvbox_bold = 0
+  gruvbox_bold = 0,
+  mapleader = ' '
+}
+
+M.mappings = {
+  nnoremap = {
+    ['<leader>w'] = '<cmd>w<CR>',
+    ['<leader>q'] = '<cmd>q<CR>',
+    ['<leader>e'] = '<cmd>Lexplore<CR>',
+    ['<Tab>']     = '<cmd>bprev<CR>',
+    [';']         = ':',
+    ['ga']        = '<Plug>(EasyAlign)'
+  },
+  xnoremap = {
+    ['ga'] = '<Plug>(EasyAlign)'
+  }
 }
 
 return M

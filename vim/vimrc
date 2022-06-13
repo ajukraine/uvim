@@ -6,6 +6,9 @@ import './myplug.vim'
 # Enables Vim features, which are not compatible with Vi
 set nocompatible
 
+syntax on
+filetype plugin indent on
+
 # Setup autoreload of config when it's saved
 autocmd! BufWritePost $MYVIMRC ++nested source <afile>
 autocmd! SourcePost $MYVIMRC ++nested call LightlineReload()
@@ -77,6 +80,12 @@ end
 for name, value in pairs(config.globals) do
   vim.g[name] = table2dict(value)
 end
+
+for mapper, mappings in pairs(config.mappings) do
+  for keys, action in pairs(mappings) do
+    vim.command(mapper .. ' ' .. keys .. ' ' .. action)
+  end
+end
 EOF
 
 var custom_options = luaeval('vim.dict(require("aj.config").custom_options)')
@@ -95,9 +104,6 @@ endif
 
 execute 'colorscheme ' .. custom_options.colorscheme
 
-syntax on
-filetype plugin indent on
-
 # Reloads lightline after changes to config
 def LightlineReload()
   lightline#init()
@@ -109,15 +115,3 @@ enddef
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 
-### Custom key bindings
-g:mapleader = ' '
-nnoremap <leader>w     <Cmd>w<CR>
-nnoremap <leader>q     <Cmd>q<CR>
-nnoremap <leader>e     <Cmd>Lexplore<CR>
-nnoremap <Tab>         <cmd>bprev<cr>
-nnoremap ; :
-
-# Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-# # Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)

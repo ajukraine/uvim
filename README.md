@@ -38,7 +38,7 @@ It consists of shared core config written in Lua, wrapped into Vim and Neovim sp
 
 - [ ] Implement basic Vim version, by moving existing config to Lua
   - [x] options
-  - [ ] key mappings
+  - [x] key mappings
   - [x] automatic Lua config reload on save
   - [ ] plugins
   - [ ] auto commands
