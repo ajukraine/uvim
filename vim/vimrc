@@ -28,20 +28,20 @@ Plug 'lambdalisue/battery.vim'
 # Kitty config syntax highlighting
 Plug 'fladson/vim-kitty'
 
-### Color schemes
+# Color schemes
 Plug 'morhetz/gruvbox'
 
-### Editing assistance
+# Editing assistance
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-unimpaired' #Magical key bindings like '[p [<Space>'
 
-### Syntax/Language support
+# Syntax/Language support
 Plug 'iamcco/markdown-preview.nvim', { 'do' : { -> mkdp#util#install() }, 'for' : ['markdown', 'vim-plug'] }
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
 
-### Layout/Appearance
+# Layout/Appearance
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 

@@ -82,7 +82,8 @@ o.fillchars='vert:\\ ,fold:-,eob:~'
 -- Display completion menu for command line
 o.wildmenu = true
 
--- Speed up slow switch/escape to 'normal' mode (see more https://vi.stackexchange.com/a/18472)
+-- Speed up slow switch/escape from 'insert' to 'normal' mode
+-- see more https://vi.stackexchange.com/a/18472
 o.noesckeys = true
 
 M.custom_options = {
