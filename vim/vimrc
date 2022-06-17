@@ -95,6 +95,6 @@ def LightlineReload()
 enddef
 
 ### Hide cursorline for inactive windows
-autocmd WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
+au! WinEnter * setlocal cursorline
+au! WinLeave * setlocal nocursorline
 
