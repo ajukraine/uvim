@@ -23,6 +23,7 @@ M.plugins = {
   'itchyny/lightline.vim',
 
   'morhetz/gruvbox',
+  -- 'lifepillar/vim-gruvbox8',
 
   'junegunn/vim-easy-align',
   'tpope/vim-commentary',
@@ -136,6 +137,8 @@ M.globals = {
     }
   },
   gruvbox_bold = 0,
+  gruvbox_italic = 1,
+  gruvbox_italicize_comments = 1,
   mapleader = ' ',
   startify_disable_at_vimenter = 1, -- Startify too slow at start
 }
