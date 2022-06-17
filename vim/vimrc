@@ -13,40 +13,6 @@ filetype plugin indent on
 autocmd! BufWritePost $MYVIMRC ++nested source <afile>
 autocmd! SourcePost $MYVIMRC ++nested call LightlineReload()
 
-var vimrc_folder = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-
-myplug.Begin(vimrc_folder)
-
-Plug 'dstein64/vim-startuptime'
-
-# Fancy start screen
-Plug 'mhinz/vim-startify'
-
-# Show battery information on statusline/tabline
-Plug 'lambdalisue/battery.vim'
-
-# Kitty config syntax highlighting
-Plug 'fladson/vim-kitty'
-
-# Color schemes
-Plug 'morhetz/gruvbox'
-
-# Editing assistance
-Plug 'tpope/vim-commentary'
-Plug 'junegunn/vim-easy-align'
-Plug 'tpope/vim-unimpaired' #Magical key bindings like '[p [<Space>'
-
-# Syntax/Language support
-Plug 'iamcco/markdown-preview.nvim', { 'do' : { -> mkdp#util#install() }, 'for' : ['markdown', 'vim-plug'] }
-Plug 'godlygeek/tabular'
-Plug 'preservim/vim-markdown'
-
-# Layout/Appearance
-Plug 'itchyny/lightline.vim'
-Plug 'ryanoasis/vim-devicons'
-
-myplug.End()
-
 autocmd FileType markdown setlocal nofoldenable
 
 autocmd! BufWritePost *.lua ++nested source $MYVIMRC
@@ -54,6 +20,28 @@ autocmd! BufWritePost *.lua ++nested source $MYVIMRC
 lua << EOF
 package.loaded['aj.config'] = nil
 local config = require('aj.config')
+
+local function table2dict(tbl)
+  if type(tbl) == type({}) then
+    for key, value in pairs(tbl) do
+      tbl[key] = table2dict(value)
+    end
+    tbl = vim.dict(tbl)
+  end
+  return tbl
+end
+
+local vimrc_folder = vim.eval([[fnamemodify(resolve(expand('<sfile>:p')), ':h')]])
+vim.call('myplug.Begin', vimrc_folder)
+for i, plugin in ipairs(config.plugins) do
+  local opts = {}
+  if type(plugin) == type({}) then
+    opts = plugin
+    plugin = plugin[1]
+  end
+  vim.call('plug#', plugin, table2dict(opts))
+end
+vim.call('myplug.End')
 
 for name, value in pairs(config.options) do
   if type(value) == type(true) then
@@ -65,16 +53,6 @@ for name, value in pairs(config.options) do
   else
     vim.command('set ' .. name .. '=' .. value)
   end
-end
-
-local function table2dict(tbl)
-  if type(tbl) == type({}) then
-    for key, value in pairs(tbl) do
-      tbl[key] = table2dict(value)
-    end
-    tbl = vim.dict(tbl)
-  end
-  return tbl
 end
 
 for name, value in pairs(config.globals) do

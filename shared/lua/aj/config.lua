@@ -1,5 +1,34 @@
 local M = {}
 
+M.plugins = {
+  { 'dstein64/vim-startuptime', on = 'StartupTime' },
+
+  'ryanoasis/vim-devicons',
+  'mhinz/vim-startify',
+
+  'fladson/vim-kitty',
+  'godlygeek/tabular',
+  'preservim/vim-markdown',
+  {
+    'iamcco/markdown-preview.nvim',
+    ['for'] = 'markdown',
+
+    -- Currently can't pass Lua function as argument to Vim9 'world'
+    -- Due to https://github.com/vim/vim/issues/10587
+    -- So instead use Vim command as string
+    ['do'] = ':call mkdp#util#install()',
+  },
+
+  'lambdalisue/battery.vim',
+  'itchyny/lightline.vim',
+
+  'morhetz/gruvbox',
+
+  'junegunn/vim-easy-align',
+  'tpope/vim-commentary',
+  'tpope/vim-unimpaired',
+}
+
 M.options = {
   encoding = 'utf-8',
   hidden = true,
