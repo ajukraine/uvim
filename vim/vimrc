@@ -10,15 +10,15 @@ syntax on
 filetype plugin indent on
 
 # Setup autoreload of config when it's saved
-autocmd! BufWritePost $MYVIMRC ++nested source <afile>
-autocmd! SourcePost $MYVIMRC ++nested call LightlineReload()
-
-autocmd FileType markdown setlocal nofoldenable
-
-autocmd! BufWritePost *.lua ++nested source $MYVIMRC
+augroup config_reload
+  au!
+  au BufWritePost $MYVIMRC ++nested source <afile>
+  au SourcePre $MYVIMRC ++nested lua package.loaded['aj.config'] = nil
+  au SourcePost $MYVIMRC ++nested call LightlineReload()
+  au BufWritePost *.lua ++nested source $MYVIMRC
+augroup END
 
 lua << EOF
-package.loaded['aj.config'] = nil
 local config = require('aj.config')
 
 local function table2dict(tbl)
@@ -65,6 +65,8 @@ for mapper, mappings in pairs(config.mappings) do
   end
 end
 EOF
+
+autocmd FileType markdown setlocal nofoldenable
 
 var custom_options = luaeval('vim.dict(require("aj.config").custom_options)')
 
