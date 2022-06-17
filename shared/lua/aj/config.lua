@@ -7,8 +7,8 @@ M.plugins = {
   'mhinz/vim-startify',
 
   'fladson/vim-kitty',
-  'godlygeek/tabular',
-  'preservim/vim-markdown',
+  { 'godlygeek/tabular', ['for'] = 'markdown' },
+  { 'preservim/vim-markdown', ['for'] = 'markdown' },
   {
     'iamcco/markdown-preview.nvim',
     ['for'] = 'markdown',
