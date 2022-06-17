@@ -83,7 +83,9 @@ if has_guicolors
   set termguicolors
 endif
 
-execute 'colorscheme ' .. custom_options.colorscheme
+if has_key(custom_options, 'colorscheme')
+  execute 'colorscheme ' .. custom_options.colorscheme
+endif
 
 # Reloads lightline after changes to config
 def LightlineReload()
