@@ -136,7 +136,8 @@ M.globals = {
     }
   },
   gruvbox_bold = 0,
-  mapleader = ' '
+  mapleader = ' ',
+  startify_disable_at_vimenter = 1, -- Startify too slow at start
 }
 
 M.mappings = {
