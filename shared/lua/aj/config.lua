@@ -6,7 +6,7 @@ M.plugins = {
   'ryanoasis/vim-devicons',
   'mhinz/vim-startify',
 
-  'fladson/vim-kitty',
+  { 'fladson/vim-kitty', ['for'] = { 'kitty', 'kitty-session' } },
   { 'godlygeek/tabular', ['for'] = 'markdown' },
   { 'preservim/vim-markdown', ['for'] = 'markdown' },
   {
