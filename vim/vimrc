@@ -6,9 +6,9 @@ import './myplug.vim'
 # Enables Vim features, which are not compatible with Vi
 set nocompatible
 
-syntax on
 # FIXME: Triggers 'filetype.vim' to be executed twice according to vim-startuptime
-filetype plugin indent on
+# syntax on
+# filetype plugin indent on
 
 # Setup autoreload of config when it's saved
 augroup config_reload
