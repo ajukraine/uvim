@@ -74,10 +74,7 @@ o.hlsearch = true
 
 -- Enable mouse
 o.mouse = 'a'
-
-if (opts.is_vim) then
-	o.ttymouse = 'xterm2'
-end
+o.ttymouse = 'xterm2' -- Not supported in Neovim
 
 -- Enable backspace in Insert mode
 o.backspace = 2
@@ -114,11 +111,9 @@ o.fillchars=[[vert: ,fold:-,eob:~]]
 -- Display completion menu for command line
 o.wildmenu = true
 
-if opts.is_vim then
-	-- Speed up slow switch/escape from 'insert' to 'normal' mode
-	-- see more https://vi.stackexchange.com/a/18472
-	o.noesckeys = true
-end
+-- Speed up slow switch/escape from 'insert' to 'normal' mode
+-- see more https://vi.stackexchange.com/a/18472
+o.esckeys = false -- Not supported in Neovim
 
 local custom_options = {
   transparent_background = true,

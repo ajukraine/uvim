@@ -59,4 +59,5 @@ It consists of shared core config written in Lua, wrapped into Vim and Neovim sp
   - [ ] global varibles
   - [ ] functions
 - [ ] Define interface of 'aj.config' Lua module
+- [ ] Find out how to write logs during confiration
 

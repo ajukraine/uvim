@@ -51,19 +51,24 @@ end
 vim.call('myplug.End')
 
 for name, value in pairs(config.options) do
-  if type(value) == type(true) then
-    if value == false then
-      name = 'no' .. name
-    end
-
-    vim.command('set ' .. name)
+  if vim.fn.exists('+' .. name) == 0 then
+    -- TODO: log unsupported options
+    -- print('Unsupported option: ' .. name)
   else
-    if type(value) == type('') then
-      -- Escape characters
-      value = string.gsub(value, '[ |\\]',
-        function (str) return [[\]] .. str end)
+    if type(value) == type(true) then
+      if value == false then
+        name = 'no' .. name
+      end
+
+      vim.command('set ' .. name)
+    else
+      if type(value) == type('') then
+        -- Escape characters
+        value = string.gsub(value, '[ |\\]',
+          function (str) return [[\]] .. str end)
+      end
+      vim.command('set ' .. name .. '=' .. value)
     end
-    vim.command('set ' .. name .. '=' .. value)
   end
 end
 
