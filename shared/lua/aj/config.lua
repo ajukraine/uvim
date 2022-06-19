@@ -106,7 +106,8 @@ M.get_config = function(opts)
   o.t_EI = [[[2 q]]
 
   -- Set separator for vertical split (there is space in the end after \)
-  o.fillchars=[[vert: ,fold:-,eob:~]]
+  -- Vertical bar is a multi-bytes symbol https://unix.stackexchange.com/q/549008
+  o.fillchars=[[vert:┃,fold:-,eob:~]]
 
   -- Display completion menu for command line
   o.wildmenu = true
