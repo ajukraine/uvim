@@ -17,3 +17,20 @@ for name, value in pairs(config.options) do
     vim.o[name] = value
   end
 end
+
+for name, value in pairs(config.globals) do
+  vim.g[name] = value
+end
+
+local mappers = {
+  nnoremap = { mode = 'n', opts = { noremap = true } },
+  xnoremap = { mode = 'n', opts = { noremap = true } },
+}
+
+for mapper, mappings in pairs(config.mappings) do
+  local args = mappers[mapper]
+
+  for key, action in pairs(mappings) do
+    vim.keymap.set(args.mode, key, action, args.opts)
+  end
+end
