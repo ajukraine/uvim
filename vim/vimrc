@@ -20,7 +20,7 @@ augroup config_reload
 augroup END
 
 lua << EOF
-local config = require('aj.config')
+_G.config = require('aj.config').get_config { is_nvim = false, is_vim = true }
 
 local function table2dict(tbl)
   if type(tbl) == type({}) then
@@ -75,7 +75,7 @@ EOF
 
 autocmd FileType markdown setlocal nofoldenable
 
-var custom_options = luaeval('vim.dict(require("aj.config").custom_options)')
+var custom_options = luaeval('vim.dict(_G.config.custom_options)')
 
 # Detect support of 'true colors'
 var has_guicolors = $COLORTERM == 'truecolor' && exists('+termguicolors') || has('gui_vimr') || exists('g:fvim_loaded')

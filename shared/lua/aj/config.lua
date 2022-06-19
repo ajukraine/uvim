@@ -1,6 +1,7 @@
 local M = {}
 
-M.plugins = {
+M.get_config = function(opts)
+local plugins = {
   { 'dstein64/vim-startuptime', on = 'StartupTime' },
 
   'ryanoasis/vim-devicons',
@@ -30,12 +31,10 @@ M.plugins = {
   'tpope/vim-unimpaired',
 }
 
-M.options = {
+local o = {
   encoding = 'utf-8',
   hidden = true,
 }
-
-local o = M.options
 
 -- Always display status line
 o.laststatus = 2
@@ -60,7 +59,7 @@ o.splitright = true
 
 -- Don't show current mode in the command line
 -- Instead rely on statusline built-in or installed plugin
-o.noshowmode = true
+o.showmode = false
 
 -- Use system clipboard by default
 o.clipboard = 'unnamed'
@@ -75,7 +74,10 @@ o.hlsearch = true
 
 -- Enable mouse
 o.mouse = 'a'
-o.ttymouse = 'xterm2'
+
+if (opts.is_vim) then
+	o.ttymouse = 'xterm2'
+end
 
 -- Enable backspace in Insert mode
 o.backspace = 2
@@ -103,29 +105,31 @@ o.cursorline = true
 
 -- Set cursor shape depending on mode
 -- (see more https://nickjanetakis.com/blog/change-your-vim-cursor-from-a-block-to-line-in-normal-and-insert-mode)
-o.t_SI = [[[6\ q]]
-o.t_EI = [[[2\ q]]
+o.t_SI = [[[6 q]]
+o.t_EI = [[[2 q]]
 
 -- Set separator for vertical split (there is space in the end after \)
-o.fillchars='vert:\\ ,fold:-,eob:~'
+o.fillchars=[[vert: ,fold:-,eob:~]]
 
 -- Display completion menu for command line
 o.wildmenu = true
 
--- Speed up slow switch/escape from 'insert' to 'normal' mode
--- see more https://vi.stackexchange.com/a/18472
-o.noesckeys = true
+if opts.is_vim then
+	-- Speed up slow switch/escape from 'insert' to 'normal' mode
+	-- see more https://vi.stackexchange.com/a/18472
+	o.noesckeys = true
+end
 
-M.custom_options = {
+local custom_options = {
   transparent_background = true,
   colorscheme = 'gruvbox'
 }
 
-M.globals = {
+local globals = {
   ['battery#component_format'] = '%s %v%%',
   ['lightline#bufferline#enable_devicons'] = 1,
   lightline = {
-    colorscheme = M.custom_options.colorscheme,
+    colorscheme = custom_options.colorscheme,
     active= {
       right= {{'battery'}, {'clock'}, {'fileformat', 'fileencoding', 'filetype'}}
     },
@@ -143,7 +147,7 @@ M.globals = {
   startify_disable_at_vimenter = 1, -- Startify too slow at start
 }
 
-M.mappings = {
+local mappings = {
   nnoremap = {
     ['<leader>w'] = '<cmd>w<CR>',
     ['<leader>q'] = '<cmd>q<CR>',
@@ -156,5 +160,15 @@ M.mappings = {
     ['ga'] = '<Plug>(EasyAlign)'
   }
 }
+
+return {
+	plugins = plugins,
+	options = o,
+	custom_options = custom_options,
+	mappings = mappings,
+	globals = globals
+}
+
+end
 
 return M
