@@ -58,6 +58,11 @@ for name, value in pairs(config.options) do
 
     vim.command('set ' .. name)
   else
+    if type(value) == type('') then
+      -- Escape characters
+      value = string.gsub(value, '[ |\\]',
+        function (str) return [[\]] .. str end)
+    end
     vim.command('set ' .. name .. '=' .. value)
   end
 end
