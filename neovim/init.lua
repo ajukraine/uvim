@@ -7,7 +7,12 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 
 package.loaded['aj.config'] = nil
-local config = require('aj.config').get_config { is_nvim = true, is_vim = false }
+local opts = {
+  is_nvim = true,
+  is_vim = false,
+  has_guicolors = vim.fn.has('termguicolors') == 1
+}
+local config = require('aj.config').get_config(opts)
 
 for name, value in pairs(config.options) do
   if vim.fn.exists('+' .. name) == 0 then

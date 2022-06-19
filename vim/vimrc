@@ -19,8 +19,16 @@ augroup config_reload
   au BufWritePost *.lua ++nested source $MYVIMRC
 augroup END
 
+# Detect support of 'true colors'
+var has_guicolors = $COLORTERM == 'truecolor' && has('termguicolors') || has('gui_vimr') || exists('g:fvim_loaded')
+
 lua << EOF
-_G.config = require('aj.config').get_config { is_nvim = false, is_vim = true }
+local opts = {
+  is_nvim = false,
+  is_vim = true,
+  has_guicolors = vim.eval('has_guicolors')
+}
+_G.config = require('aj.config').get_config(opts)
 
 local function table2dict(tbl)
   if type(tbl) == type({}) then
@@ -87,16 +95,9 @@ autocmd FileType markdown setlocal nofoldenable
 
 var custom_options = luaeval('vim.dict(_G.config.custom_options)')
 
-# Detect support of 'true colors'
-var has_guicolors = $COLORTERM == 'truecolor' && exists('+termguicolors') || has('gui_vimr') || exists('g:fvim_loaded')
-
 # Make background transparent after color scheme is changed
 if custom_options.transparent_background
   autocmd! Colorscheme * hi Normal guibg=NONE ctermbg=NONE
-endif
-
-if has_guicolors
-  set termguicolors
 endif
 
 if has_key(custom_options, 'colorscheme')

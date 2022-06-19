@@ -115,6 +115,10 @@ o.wildmenu = true
 -- see more https://vi.stackexchange.com/a/18472
 o.esckeys = false -- Not supported in Neovim
 
+if opts.has_guicolors then
+  o.termguicolors = true
+end
+
 local custom_options = {
   transparent_background = true,
   colorscheme = 'gruvbox'
