@@ -2,3 +2,5 @@
 .vimplug
 .netrwhist
 *.swp
+
+neovim/data
