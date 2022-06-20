@@ -31,6 +31,10 @@ M.get_config = function(opts)
     'tpope/vim-unimpaired',
   }
 
+  if opts.is_nvim then
+    table.insert(plugins, 'nathom/filetype.nvim')
+  end
+
   local o = {
     encoding = 'utf-8',
     hidden = true,
