@@ -20,11 +20,11 @@ M.get_config = function(opts)
       ['do'] = ':call mkdp#util#install()',
     },
 
-    'lambdalisue/battery.vim',
-    'itchyny/lightline.vim',
-
     'morhetz/gruvbox',
     -- 'lifepillar/vim-gruvbox8',
+
+    'lambdalisue/battery.vim',
+    'itchyny/lightline.vim',
 
     'junegunn/vim-easy-align',
     'tpope/vim-commentary',
