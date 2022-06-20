@@ -58,7 +58,7 @@ end
 
 local mappers = {
   nnoremap = { mode = 'n', opts = { noremap = true } },
-  xnoremap = { mode = 'n', opts = { noremap = true } },
+  xnoremap = { mode = 'x', opts = { noremap = true } },
 }
 
 for mapper, mappings in pairs(config.mappings) do
