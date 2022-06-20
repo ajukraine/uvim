@@ -77,7 +77,7 @@ M.get_config = function(opts)
   o.ttymouse = 'xterm2' -- Not supported in Neovim
 
   -- Enable backspace in Insert mode
-  o.backspace = 2
+  o.backspace = '2'
   -- Enable left/right arrows to move to prev/next lines in Normal, Visual, Insert and Replace modes
   o.whichwrap = '<,>,[,]'
 
