@@ -137,11 +137,12 @@ M.get_config = function(opts)
       active= {
         right= {{'battery'}, {'clock'}, {'fileformat', 'fileencoding', 'filetype'}}
       },
-      component= {
-        clock= '%{strftime("%b %d, %H:%M")}'
+      component = {
+        clock = '%{strftime("%b %d, %H:%M")}',
+        filetype = '%{WebDevIconsGetFileTypeSymbol() . " " . &filetype}'
       },
       component_function = {
-        battery = 'battery#component'
+        battery = 'battery#component',
       }
     },
     gruvbox_bold = 0,
