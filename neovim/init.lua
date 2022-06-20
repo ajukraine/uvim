@@ -1,9 +1,9 @@
 vim.o.compatible = false
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "init.lua",
+  pattern = vim.fn.expand('$MYVIMRC'),
   nested = true,
-  command = "source $MYVIMRC",
+  command = "source <afile>",
   group = vim.api.nvim_create_augroup("config_reload", { clear = true })
 })
 
