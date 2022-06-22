@@ -19,6 +19,7 @@ M.get_config = function(opts)
       -- So instead use Vim command as string
       ['do'] = ':call mkdp#util#install()',
     },
+    { 'sillybun/vim-repl',                  ['for'] = 'python' },
 
     'morhetz/gruvbox',
     -- 'lifepillar/vim-gruvbox8',
@@ -150,6 +151,7 @@ M.get_config = function(opts)
     gruvbox_italicize_comments = 1,
     mapleader = ' ',
     startify_disable_at_vimenter = 1, -- Startify too slow at start
+    sendtorepl_invoke_key = '<leader>r',
   }
 
   local mappings = {
