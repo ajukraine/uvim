@@ -7,12 +7,12 @@ M.get_config = function(opts)
     'ryanoasis/vim-devicons',
     'mhinz/vim-startify',
 
-    { 'khaveesh/vim-fish-syntax',     ['for'] = 'fish' },
-    { 'fladson/vim-kitty',            ['for'] = { 'kitty', 'kitty-session' } },
-    { 'godlygeek/tabular',            ['for'] = 'markdown' },
-    { 'preservim/vim-markdown',       ['for'] = 'markdown' },
+    { 'khaveesh/vim-fish-syntax',           ['for'] = 'fish' },
+    { 'fladson/vim-kitty',                  ['for'] = { 'kitty', 'kitty-session' } },
+    { 'godlygeek/tabular',                  ['for'] = 'markdown' },
+    { 'preservim/vim-markdown',             ['for'] = 'markdown' },
     {
-      'iamcco/markdown-preview.nvim', ['for'] = 'markdown',
+      'iamcco/markdown-preview.nvim',       ['for'] = 'markdown',
 
       -- Currently can't pass Lua function as argument to Vim9 'world'
       -- Due to https://github.com/vim/vim/issues/10587
