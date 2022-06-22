@@ -151,6 +151,7 @@ M.get_config = function(opts)
     gruvbox_italicize_comments = 1,
     mapleader = ' ',
     startify_disable_at_vimenter = 1, -- Startify too slow at start
+    python_recommended_style = 0, -- Built-in Python configuration
     sendtorepl_invoke_key = '<leader>r',
   }
 
