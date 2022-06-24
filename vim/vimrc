@@ -54,6 +54,7 @@ for i, plugin in ipairs(config.plugins) do
 
     table.remove(opts, 1)
   end
+
   vim.call('plug#', plugin, table2dict(opts))
 end
 vim.call('myplug.End')
