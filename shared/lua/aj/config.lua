@@ -38,6 +38,8 @@ M.get_config = function(opts)
     'junegunn/vim-easy-align',
     'tpope/vim-commentary',
     'tpope/vim-unimpaired',
+
+    'kassio/neoterm',
   }
 
   if opts.is_nvim then
@@ -171,6 +173,10 @@ M.get_config = function(opts)
     python_recommended_style = 0, -- Built-in Python configuration
     sendtorepl_invoke_key = '<leader>r',
 
+    neoterm_default_mod = 'belowright',
+    neoterm_size = 16,
+    neoterm_autoscroll = 1,
+
     mkdp_browser = 'min',
   }
 
@@ -187,6 +193,10 @@ M.get_config = function(opts)
       ['ga'] = '<Plug>(EasyAlign)'
     }
   }
+
+  if opts.is_nvim then
+    mappings.nnoremap[globals.sendtorepl_invoke_key] = '<cmd>TREPLSendLine<cr>j'
+  end
 
   return {
     plugins = plugins,
