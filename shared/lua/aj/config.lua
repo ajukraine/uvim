@@ -43,6 +43,7 @@ M.get_config = function(opts)
   if opts.is_nvim then
     extend(plugins, {
       'nathom/filetype.nvim',
+      'github/copilot.vim',
     })
   end
 
