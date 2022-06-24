@@ -1,6 +1,15 @@
 local M = {}
 
 M.get_config = function(opts)
+
+  -- function that extends array 'base' with another array 'new'
+  local function extend(base, new)
+    for i, v in ipairs(new) do
+      table.insert(base, v)
+    end
+    return base
+  end
+
   local plugins = {
     { 'dstein64/vim-startuptime', on = 'StartupTime' },
 
@@ -19,7 +28,6 @@ M.get_config = function(opts)
       -- So instead use Vim command as string
       ['do'] = ':call mkdp#util#install()',
     },
-    { 'sillybun/vim-repl',                  ['for'] = 'python' },
 
     'morhetz/gruvbox',
     -- 'lifepillar/vim-gruvbox8',
@@ -33,7 +41,15 @@ M.get_config = function(opts)
   }
 
   if opts.is_nvim then
-    table.insert(plugins, 'nathom/filetype.nvim')
+    extend(plugins, {
+      'nathom/filetype.nvim',
+    })
+  end
+
+  if opts.is_vim then
+   extend(plugins, {
+     { 'sillybun/vim-repl', ['for'] = 'python' },
+   })
   end
 
   local o = {
