@@ -51,6 +51,7 @@ It consists of shared core config written in Lua, wrapped into Vim and Neovim sp
   - [x] options
   - [x] key mappings
   - [ ] automatic Lua config reload on save
+  - [ ] automatic PlugInstall
   - [x] plugins
   - [ ] auto commands
   - [x] logic around 'has_guicolors'
