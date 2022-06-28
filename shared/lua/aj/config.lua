@@ -40,6 +40,8 @@ M.get_config = function(opts)
     'tpope/vim-unimpaired',
 
     'kassio/neoterm',
+
+    'dense-analysis/ale',
     'editorconfig/editorconfig-vim',
   }
 
