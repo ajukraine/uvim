@@ -40,6 +40,7 @@ M.get_config = function(opts)
     'tpope/vim-unimpaired',
 
     'kassio/neoterm',
+    'editorconfig/editorconfig-vim',
   }
 
   if opts.is_nvim then
