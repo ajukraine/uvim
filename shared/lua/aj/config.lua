@@ -34,6 +34,7 @@ M.get_config = function(opts)
 
     'lambdalisue/battery.vim',
     'itchyny/lightline.vim',
+    'airblade/vim-gitgutter',
 
     'junegunn/vim-easy-align',
     'tpope/vim-commentary',
@@ -125,7 +126,7 @@ M.get_config = function(opts)
   o.colorcolumn = '+1'
 
   -- Show relative line numbers, special signs (like git signs) and cursorline
-  o.signcolumn = 'number'
+  o.signcolumn = 'yes'
   o.number = true
   o.relativenumber = true
   o.cursorline = true
@@ -145,6 +146,9 @@ M.get_config = function(opts)
   -- Speed up slow switch/escape from 'insert' to 'normal' mode
   -- see more https://vi.stackexchange.com/a/18472
   o.esckeys = false -- Not supported in Neovim
+
+  -- Speed up update timer for plugins like GitGutter, which depends on the for its updates
+  o.updatetime = 100
 
   if opts.has_guicolors then
     o.termguicolors = true
@@ -192,6 +196,8 @@ M.get_config = function(opts)
     mkdp_browser = 'min',
 
     lsp_document_code_action_signs_delay = 0,
+
+    gitgutter_override_sign_column_highlight = 1,
   }
 
   local mappings = {
