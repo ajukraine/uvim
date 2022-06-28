@@ -55,6 +55,9 @@ M.get_config = function(opts)
   if opts.is_vim then
    extend(plugins, {
      { 'sillybun/vim-repl', ['for'] = 'python' },
+     'prabirshrestha/vim-lsp',
+     'mattn/vim-lsp-settings',
+     'rhysd/vim-lsp-ale',
    })
   end
 
@@ -187,6 +190,8 @@ M.get_config = function(opts)
     neoterm_autoscroll = 1,
 
     mkdp_browser = 'min',
+
+    lsp_document_code_action_signs_delay = 0,
   }
 
   local mappings = {
@@ -196,8 +201,16 @@ M.get_config = function(opts)
       ['<leader>e'] = '<cmd>Lexplore<CR>',
       ['<Tab>']     = '<cmd>bprev<CR>',
       [';']         = ':',
-      ['ga']        = '<Plug>(EasyAlign)'
+      ['ga']        = '<Plug>(EasyAlign)',
+
+      ['<leader>i']  = '<plug>(lsp-implementation)',
+      ['<leader>r']  = '<plug>(lsp-rename)',
+      ['<leader>a']  = '<plug>(lsp-code-action)',
+      ['<leader>u']  = '<plug>(lsp-references)',
+      ['<leader>pi'] = '<plug>(lsp-peek-implementation)',
+      ['<leader>s']  = '<plug>(lsp-signature-help)',
     },
+
     xnoremap = {
       ['ga'] = '<Plug>(EasyAlign)'
     }
