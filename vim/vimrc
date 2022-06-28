@@ -26,7 +26,7 @@ lua << EOF
 local opts = {
   is_nvim = false,
   is_vim = true,
-  has_guicolors = vim.eval('has_guicolors')
+  has_guicolors = vim.eval('has_guicolors') ~= 0
 }
 _G.config = require('aj.config').get_config(opts)
 
