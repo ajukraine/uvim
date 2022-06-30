@@ -175,7 +175,7 @@ M.get_config = function(opts)
       },
       component = {
         clock = '%{strftime("%b %d, %H:%M")}',
-        filetype = '%{WebDevIconsGetFileTypeSymbol() . " " . &filetype}'
+        filetype = '%{WebDevIconsGetFileTypeSymbol() . " (" . &filetype})'
       },
       component_function = {
         battery = 'battery#component',
