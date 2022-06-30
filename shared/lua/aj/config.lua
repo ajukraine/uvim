@@ -55,7 +55,7 @@ M.get_config = function(opts)
 
   if opts.is_vim then
    extend(plugins, {
-     { 'sillybun/vim-repl', ['for'] = { 'python', 'typescript' } },
+     { 'sillybun/vim-repl', ['for'] = { 'python', 'typescript', 'cs' } },
      'prabirshrestha/vim-lsp',
      'mattn/vim-lsp-settings',
      'rhysd/vim-lsp-ale',
@@ -189,7 +189,8 @@ M.get_config = function(opts)
     python_recommended_style = 0, -- Built-in Python configuration
     sendtorepl_invoke_key = '<leader>r',
     repl_program = {
-      typescript = 'npx ts-node'
+      typescript = 'npx ts-node',
+      cs = 'dotnet repl',
     },
 
     neoterm_default_mod = 'belowright',
