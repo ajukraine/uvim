@@ -55,7 +55,7 @@ M.get_config = function(opts)
 
   if opts.is_vim then
    extend(plugins, {
-     { 'sillybun/vim-repl', ['for'] = 'python' },
+     { 'sillybun/vim-repl', ['for'] = { 'python', 'typescript' } },
      'prabirshrestha/vim-lsp',
      'mattn/vim-lsp-settings',
      'rhysd/vim-lsp-ale',
@@ -188,6 +188,9 @@ M.get_config = function(opts)
     startify_disable_at_vimenter = 1, -- Startify too slow at start
     python_recommended_style = 0, -- Built-in Python configuration
     sendtorepl_invoke_key = '<leader>r',
+    repl_program = {
+      typescript = 'npx ts-node'
+    },
 
     neoterm_default_mod = 'belowright',
     neoterm_size = 16,
