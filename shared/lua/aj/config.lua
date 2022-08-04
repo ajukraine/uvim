@@ -63,7 +63,7 @@ M.get_config = function(opts)
     table.insert(hooks['PostPlugins'], function ()
       require("zen-mode").setup { window = { height = 0.8 } }
       require("catppuccin").setup {
-        transparent_background = true,
+        transparent_background = false,
         dim_inactive = {
           enabled = true,
           percentage = 0.01,
@@ -181,7 +181,7 @@ M.get_config = function(opts)
 
   local custom_options = {
     colorscheme = 'catppuccin',
-    -- transparent_background = true,
+    transparent_background = false,
     -- colorscheme = 'gruvbox',
     -- colorscheme = 'tokyonight',
   }
