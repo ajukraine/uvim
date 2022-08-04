@@ -62,7 +62,12 @@ M.get_config = function(opts)
     })
 
     table.insert(hooks['PostPlugins'], function ()
-      require("zen-mode").setup { window = { height = 0.8 } }
+      require("zen-mode").setup {
+        window = { height = 0.7 },
+        plugins = {
+          kitty = { enabled = true, font = "+4" },
+        }
+      }
       require("catppuccin").setup {
         transparent_background = false,
         dim_inactive = {
