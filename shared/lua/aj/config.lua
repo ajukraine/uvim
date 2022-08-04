@@ -55,7 +55,14 @@ M.get_config = function(opts)
     extend(plugins, {
       'nathom/filetype.nvim',
       'github/copilot.vim',
+      'folke/zen-mode.nvim',
     })
+
+    table.insert(hooks['PostPlugins'], function ()
+      require("zen-mode").setup {
+        window = { height = 0.8 }
+      }
+    end)
   end
 
   if opts.is_vim then
