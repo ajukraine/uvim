@@ -58,6 +58,7 @@ M.get_config = function(opts)
       'folke/zen-mode.nvim',
       { 'folke/tokyonight.nvim', ['branch'] = 'main' },
       'catppuccin/nvim',
+      'norcalli/nvim-colorizer.lua',
     })
 
     table.insert(hooks['PostPlugins'], function ()
@@ -69,6 +70,7 @@ M.get_config = function(opts)
           percentage = 0.01,
         }
       }
+      require("colorizer").setup { }
     end)
   end
 
