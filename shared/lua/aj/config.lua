@@ -57,11 +57,17 @@ M.get_config = function(opts)
       'github/copilot.vim',
       'folke/zen-mode.nvim',
       { 'folke/tokyonight.nvim', ['branch'] = 'main' },
+      'catppuccin/nvim',
     })
 
     table.insert(hooks['PostPlugins'], function ()
-      require("zen-mode").setup {
-        window = { height = 0.8 }
+      require("zen-mode").setup { window = { height = 0.8 } }
+      require("catppuccin").setup {
+        transparent_background = true,
+        dim_inactive = {
+          enabled = true,
+          percentage = 0.01,
+        }
       }
     end)
   end
@@ -174,8 +180,9 @@ M.get_config = function(opts)
   end
 
   local custom_options = {
-    transparent_background = true,
-    colorscheme = 'gruvbox',
+    colorscheme = 'catppuccin',
+    -- transparent_background = true,
+    -- colorscheme = 'gruvbox',
     -- colorscheme = 'tokyonight',
   }
 
@@ -221,6 +228,8 @@ M.get_config = function(opts)
 
     tokyonight_style = 'storm',
     tokyonight_transparent = false,
+
+    catppuccin_flavour = 'mocha',
   }
 
   local mappings = {
