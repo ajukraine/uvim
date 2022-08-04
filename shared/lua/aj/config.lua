@@ -56,6 +56,7 @@ M.get_config = function(opts)
       'nathom/filetype.nvim',
       'github/copilot.vim',
       'folke/zen-mode.nvim',
+      { 'folke/tokyonight.nvim', ['branch'] = 'main' },
     })
 
     table.insert(hooks['PostPlugins'], function ()
@@ -174,7 +175,8 @@ M.get_config = function(opts)
 
   local custom_options = {
     transparent_background = true,
-    colorscheme = 'gruvbox'
+    colorscheme = 'gruvbox',
+    -- colorscheme = 'tokyonight',
   }
 
   local globals = {
@@ -216,6 +218,9 @@ M.get_config = function(opts)
     gitgutter_override_sign_column_highlight = 1,
 
     vrc_set_default_mapping = 0,
+
+    tokyonight_style = 'storm',
+    tokyonight_transparent = false,
   }
 
   local mappings = {
