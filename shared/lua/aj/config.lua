@@ -41,6 +41,7 @@ M.get_config = function(opts)
     'tpope/vim-unimpaired',
 
     'kassio/neoterm',
+    'diepm/vim-rest-console',
 
     'dense-analysis/ale',
     'editorconfig/editorconfig-vim',
@@ -202,6 +203,8 @@ M.get_config = function(opts)
     lsp_document_code_action_signs_delay = 0,
 
     gitgutter_override_sign_column_highlight = 1,
+
+    vrc_set_default_mapping = 0,
   }
 
   local mappings = {
@@ -219,6 +222,8 @@ M.get_config = function(opts)
       ['<leader>u']  = '<plug>(lsp-references)',
       ['<leader>pi'] = '<plug>(lsp-peek-implementation)',
       ['<leader>s']  = '<plug>(lsp-signature-help)',
+
+      ['<leader>j'] = '<cmd>call VrcQuery()<CR>',
     },
 
     xnoremap = {
