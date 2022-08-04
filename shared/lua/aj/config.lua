@@ -10,6 +10,10 @@ M.get_config = function(opts)
     return base
   end
 
+  local hooks = {
+    ['PostPlugins'] = {}
+  }
+
   local plugins = {
     { 'dstein64/vim-startuptime', on = 'StartupTime' },
 
@@ -240,7 +244,8 @@ M.get_config = function(opts)
     options = o,
     custom_options = custom_options,
     mappings = mappings,
-    globals = globals
+    globals = globals,
+    hooks = hooks,
   }
 
 end

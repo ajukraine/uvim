@@ -43,6 +43,11 @@ end
 
 vim.call('plug#end')
 
+-- Call 'PostPlugins' hook
+for i, action in ipairs(config.hooks['PostPlugins']) do
+  action()
+end
+
 for name, value in pairs(config.options) do
   if vim.fn.exists('+' .. name) == 0 then
     -- TODO: log unsupported options
