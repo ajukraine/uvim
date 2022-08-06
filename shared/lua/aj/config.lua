@@ -69,7 +69,7 @@ M.get_config = function(opts)
         }
       }
       require("catppuccin").setup {
-        transparent_background = false,
+        transparent_background = true,
         dim_inactive = {
           enabled = true,
           percentage = 0.01,
@@ -155,7 +155,7 @@ M.get_config = function(opts)
   o.signcolumn = 'yes'
   o.number = true
   o.relativenumber = true
-  o.cursorline = true
+  o.cursorline = false
 
   -- Set cursor shape depending on mode
   -- (see more https://nickjanetakis.com/blog/change-your-vim-cursor-from-a-block-to-line-in-normal-and-insert-mode)
