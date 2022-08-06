@@ -131,6 +131,7 @@ M.get_config = function(opts)
 
   -- Enable mouse
   o.mouse = 'a'
+  o.mousemodel = 'extend'
   o.ttymouse = 'xterm2' -- Not supported in Neovim
 
   -- Enable backspace in Insert mode
