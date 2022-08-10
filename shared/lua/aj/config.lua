@@ -64,6 +64,14 @@ M.get_config = function(opts)
     })
 
     table.insert(hooks['PostPlugins'], function ()
+      require("filetype").setup {
+        overrides = {
+          literal = {
+            ["kitty.conf"] = "kitty",
+            ["vimrc"]      = "vim",
+          }
+        }
+      }
       require("zen-mode").setup {
         window = { height = 0.7 },
         plugins = {
