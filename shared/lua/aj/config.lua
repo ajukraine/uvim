@@ -279,6 +279,9 @@ M.get_config = function(opts)
     -- Some weird optimization to avoid startup time of built-in ruby syntax plugin
     -- See more at: https://github.com/vim-ruby/vim-ruby/issues/248
     ruby_path = '/usr/bin/ruby',
+
+    ale_virtualtext_cursor = 1,
+    ale_virtualtext_prefix = '   ',
   }
 
   local mappings = {
