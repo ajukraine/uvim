@@ -275,6 +275,10 @@ M.get_config = function(opts)
     tokyonight_transparent = false,
 
     catppuccin_flavour = 'mocha',
+
+    -- Some weird optimization to avoid startup time of built-in ruby syntax plugin
+    -- See more at: https://github.com/vim-ruby/vim-ruby/issues/248
+    ruby_path = '/usr/bin/ruby',
   }
 
   local mappings = {
