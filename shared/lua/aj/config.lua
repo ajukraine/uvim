@@ -207,6 +207,9 @@ M.get_config = function(opts)
   -- Display completion menu for command line
   o.wildmenu = true
 
+  -- Transparency of completion menu
+  o.pumblend = 10
+
   -- Speed up slow switch/escape from 'insert' to 'normal' mode
   -- see more https://vi.stackexchange.com/a/18472
   o.esckeys = false -- Not supported in Neovim
@@ -276,6 +279,8 @@ M.get_config = function(opts)
 
     catppuccin_flavour = 'mocha',
 
+    vim_markdown_folding_disabled = 1,
+
     -- Some weird optimization to avoid startup time of built-in ruby syntax plugin
     -- See more at: https://github.com/vim-ruby/vim-ruby/issues/248
     ruby_path = '/usr/bin/ruby',
@@ -292,6 +297,7 @@ M.get_config = function(opts)
       ['<Tab>']     = '<cmd>bprev<CR>',
       [';']         = ':',
       ['ga']        = '<Plug>(EasyAlign)',
+      ['\\\\']      = '<cmd>nohlsearch<CR>',
 
       ['<leader>i']  = '<plug>(lsp-implementation)',
       ['<leader>r']  = '<plug>(lsp-rename)',
