@@ -59,6 +59,8 @@ M.get_config = function(opts)
       { 'folke/tokyonight.nvim', ['branch'] = 'main' },
       'catppuccin/nvim',
       'norcalli/nvim-colorizer.lua',
+      { 'nvim-treesitter/nvim-treesitter', ['do'] = ':TSUpdate' },
+      'nvim-treesitter/nvim-treesitter-textobjects',
     })
 
     table.insert(hooks['PostPlugins'], function ()
@@ -76,6 +78,33 @@ M.get_config = function(opts)
         }
       }
       require("colorizer").setup { }
+      require("nvim-treesitter.configs").setup {
+        ensure_installed = { "lua", "vim" },
+        sync_install = false,
+        highlight = { enable = true },
+        textobjects = {
+          select = {
+            enable = true,
+
+            -- Automatically jump forward to textobj, similar to targets.vim
+            lookahead = true,
+
+            keymaps = {
+              -- You can use the capture groups defined in textobjects.scm
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              -- ["ac"] = "@class.outer",
+              -- ["ic"] = "@class.inner",
+            },
+            -- You can choose the select mode (default is charwise 'v')
+            selection_modes = {
+              ['@parameter.outer'] = 'v', -- charwise
+              ['@function.outer'] = 'V', -- linewise
+              ['@class.outer'] = '<c-v>', -- blockwise
+            },
+          },
+        },
+      }
     end)
   end
 
