@@ -61,6 +61,9 @@ M.get_config = function(opts)
       'norcalli/nvim-colorizer.lua',
       { 'nvim-treesitter/nvim-treesitter', ['do'] = ':TSUpdate' },
       'nvim-treesitter/nvim-treesitter-textobjects',
+
+      'nvim-lua/plenary.nvim',
+      { 'nvim-telescope/telescope.nvim', ['branch'] = '0.1.x' },
     })
 
     table.insert(hooks['PostPlugins'], function ()
@@ -81,7 +84,7 @@ M.get_config = function(opts)
       require("catppuccin").setup {
         transparent_background = true,
         dim_inactive = {
-          enabled = true,
+          enabled = false,
           percentage = 0.01,
         }
       }
