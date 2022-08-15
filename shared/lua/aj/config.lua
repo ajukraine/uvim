@@ -55,7 +55,7 @@ M.get_config = function(opts)
     extend(plugins, {
       'nathom/filetype.nvim',
       'github/copilot.vim',
-      { 'folke/zen-mode.nvim', on = 'ZenMode' },
+      'folke/zen-mode.nvim',
 
       { 'folke/tokyonight.nvim', ['branch'] = 'main' },
       'catppuccin/nvim',
@@ -77,6 +77,8 @@ M.get_config = function(opts)
           }
         }
       }
+
+      -- TODO: make it possible to setup plugin on demand, when it's loaded
       require("zen-mode").setup {
         window = { height = 0.7 },
         plugins = {
