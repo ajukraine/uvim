@@ -18,7 +18,7 @@ M.get_config = function(opts)
     { 'dstein64/vim-startuptime', on = 'StartupTime' },
 
     'ryanoasis/vim-devicons',
-    'mhinz/vim-startify',
+    { 'mhinz/vim-startify', on = 'Startify' },
 
     { 'khaveesh/vim-fish-syntax',           ['for'] = 'fish' },
     { 'fladson/vim-kitty',                  ['for'] = { 'kitty', 'kitty-session' } },
@@ -33,14 +33,14 @@ M.get_config = function(opts)
       ['do'] = ':call mkdp#util#install()',
     },
 
-    'morhetz/gruvbox',
+    -- 'morhetz/gruvbox',
     -- 'lifepillar/vim-gruvbox8',
 
     'lambdalisue/battery.vim',
     'itchyny/lightline.vim',
     'airblade/vim-gitgutter',
 
-    'junegunn/vim-easy-align',
+    { 'junegunn/vim-easy-align', on = '<Plug>(EasyAlign)' },
     'tpope/vim-commentary',
     'tpope/vim-unimpaired',
 
@@ -55,10 +55,12 @@ M.get_config = function(opts)
     extend(plugins, {
       'nathom/filetype.nvim',
       'github/copilot.vim',
-      'folke/zen-mode.nvim',
+      { 'folke/zen-mode.nvim', on = 'ZenMode' },
+
       { 'folke/tokyonight.nvim', ['branch'] = 'main' },
       'catppuccin/nvim',
       'norcalli/nvim-colorizer.lua',
+
       { 'nvim-treesitter/nvim-treesitter', ['do'] = ':TSUpdate' },
       'nvim-treesitter/nvim-treesitter-textobjects',
 
