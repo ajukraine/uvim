@@ -314,6 +314,11 @@ M.get_config = function(opts)
       ['<leader>s']  = '<plug>(lsp-signature-help)',
 
       ['<leader>j'] = '<cmd>call VrcQuery()<CR>',
+
+      ['<leader><leader>'] = '<cmd>Telescope<CR>',
+      ['<leader><leader>f'] = '<cmd>Telescope find_files<CR>',
+      ['<leader><leader>g'] = '<cmd>Telescope git_files<CR>',
+      ['<leader><leader>l'] = '<cmd>Telescope live_grep<CR>',
     },
 
     xnoremap = {
