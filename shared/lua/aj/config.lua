@@ -41,7 +41,6 @@ M.get_config = function(opts)
     'airblade/vim-gitgutter',
 
     { 'junegunn/vim-easy-align', on = '<Plug>(EasyAlign)' },
-    'tpope/vim-commentary',
     'tpope/vim-unimpaired',
 
     'kassio/neoterm',
@@ -66,6 +65,8 @@ M.get_config = function(opts)
 
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope.nvim', ['branch'] = '0.1.x' },
+
+      'numToStr/Comment.nvim',
     })
 
     table.insert(hooks['PostPlugins'], function ()
@@ -120,6 +121,8 @@ M.get_config = function(opts)
           },
         },
       }
+
+      require('Comment').setup()
     end)
   end
 
@@ -129,6 +132,7 @@ M.get_config = function(opts)
      'prabirshrestha/vim-lsp',
      'mattn/vim-lsp-settings',
      'rhysd/vim-lsp-ale',
+     'tpope/vim-commentary',
    })
   end
 
