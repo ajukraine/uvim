@@ -306,6 +306,9 @@ M.get_config = function(opts)
       ['ga']        = '<Plug>(EasyAlign)',
       ['\\\\']      = '<cmd>nohlsearch<CR>',
 
+      ['<C-n>']      = '<cmd>enew<CR>',
+      ['<C-x>']      = '<cmd>bwipeout<CR>',
+
       ['<leader>i']  = '<plug>(lsp-implementation)',
       ['<leader>r']  = '<plug>(lsp-rename)',
       ['<leader>a']  = '<plug>(lsp-code-action)',
@@ -319,6 +322,9 @@ M.get_config = function(opts)
       ['<leader><leader>f'] = '<cmd>Telescope find_files<CR>',
       ['<leader><leader>g'] = '<cmd>Telescope git_files<CR>',
       ['<leader><leader>l'] = '<cmd>Telescope live_grep<CR>',
+
+      ['\\<BS>'] = '<cmd>StartupTime --tries 10<CR>',
+      ['\\<CR>'] = '<cmd>so $MYVIMRC<CR>',
     },
 
     xnoremap = {
