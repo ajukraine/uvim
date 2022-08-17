@@ -32,11 +32,12 @@ M.get_config = function(opts)
       -- So instead use Vim command as string
       ['do'] = ':call mkdp#util#install()',
     },
+    'dhruvasagar/vim-table-mode',
 
     -- 'morhetz/gruvbox',
     -- 'lifepillar/vim-gruvbox8',
 
-    'lambdalisue/battery.vim',
+    -- 'lambdalisue/battery.vim',
     'itchyny/lightline.vim',
     'airblade/vim-gitgutter',
 
@@ -247,15 +248,16 @@ M.get_config = function(opts)
 
   local globals = {
     ['battery#component_format'] = '%s %v%%',
-    ['lightline#bufferline#enable_devicons'] = 1,
+    ['lightline#bufferline#enable_devicons'] = 1, -- TODO: we don't do that
     lightline = {
       colorscheme = custom_options.colorscheme,
-      active= {
-        right= {{'battery'}, {'clock'}, {'fileformat', 'fileencoding', 'filetype'}}
+      active = {
+        right = {--[[ {'battery'}, {'clock'}, ]] {'tablemode'}, {'fileformat', 'fileencoding', 'filetype'}}
       },
       component = {
         clock = '%{strftime("%b %d, %H:%M")}',
-        filetype = '%{WebDevIconsGetFileTypeSymbol() . " (" . &filetype})'
+        filetype = '%{WebDevIconsGetFileTypeSymbol() . " (" . &filetype})',
+        tablemode = '%{tablemode#IsActive() == 1 ? "TableMode" : ""}',
       },
       component_function = {
         battery = 'battery#component',
