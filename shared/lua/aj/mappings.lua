@@ -24,6 +24,7 @@ local mappings = {
     ['<leader><leader>f'] = '<cmd>Telescope find_files<CR>',
     ['<leader><leader>g'] = '<cmd>Telescope git_files<CR>',
     ['<leader><leader>l'] = '<cmd>Telescope live_grep<CR>',
+    ['<leader><leader>b'] = '<cmd>Telescope buffers<CR>',
 
     ['\\<BS>'] = '<cmd>StartupTime --tries 10<CR>',
     ['\\<CR>'] = '<cmd>so $MYVIMRC<CR>',
