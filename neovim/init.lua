@@ -68,12 +68,12 @@ local function configure_mappings(mappings)
 end
 
 local function configure_custom_options(custom_options)
-  if custom_options.transparent_background then
+  if vim.g.transparent_background then
     vim.cmd [[autocmd! Colorscheme * hi Normal guibg=NONE ctermbg=NONE]]
   end
 
-  if custom_options.colorscheme then
-    vim.cmd([[colorscheme ]] .. custom_options.colorscheme)
+  if vim.g.colors_name then
+    vim.cmd([[colorscheme ]] .. vim.g.colors_name)
   end
 end
 

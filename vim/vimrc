@@ -94,15 +94,15 @@ EOF
 
 autocmd FileType markdown setlocal nofoldenable
 
-var custom_options = luaeval('vim.dict(_G.config.custom_options)')
-
-# Make background transparent after color scheme is changed
-if custom_options.transparent_background
+# var custom_options = luaeval('vim.dict(_G.config.custom_options)')
+#
+# # Make background transparent after color scheme is changed
+if g:transparent_background
   autocmd! Colorscheme * hi Normal guibg=NONE ctermbg=NONE
 endif
-
-if has_key(custom_options, 'colorscheme')
-  execute 'colorscheme ' .. custom_options.colorscheme
+#
+if g:colors_name != ''
+  execute 'colorscheme ' .. g:colors_name
 endif
 
 # Reloads lightline after changes to config
@@ -113,6 +113,6 @@ def LightlineReload()
 enddef
 
 ### Hide cursorline for inactive windows
-au! WinEnter * setlocal cursorline
-au! WinLeave * setlocal nocursorline
+# au! WinEnter * setlocal cursorline
+# au! WinLeave * setlocal nocursorline
 
