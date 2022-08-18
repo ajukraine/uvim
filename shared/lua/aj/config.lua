@@ -1,12 +1,21 @@
+local function require_fresh(module_name)
+  package.loaded[module_name] = nil
+
+  return require(module_name)
+end
+
 return {
   get_config = function(opts)
+    local function get(module_name)
+      return require_fresh(module_name).get(opts)
+    end
+
     return {
-      plugins = require('aj.plugins').get(opts),
-      options = require('aj.options').get(opts),
-      -- custom_options = custom_options,
-      mappings = require('aj.mappings').get(opts),
-      globals = require('aj.globals').get(opts),
-      hooks = require('aj.hooks').get(opts),
+      plugins  = get('aj.plugins'),
+      options  = get('aj.options'),
+      mappings = get('aj.mappings'),
+      globals  = get('aj.globals'),
+      hooks    = get('aj.hooks'),
     }
   end
 }
