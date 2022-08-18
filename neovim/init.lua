@@ -93,6 +93,8 @@ vim.api.nvim_create_user_command("LightlineReload", lightline_reload, {})
 
 local augroup_config = vim.api.nvim_create_augroup("config_reload", { clear = true })
 local config_file = vim.fn.expand('$MYVIMRC')
+local config_folder = vim.fn.fnamemodify(config_file, ':h')
+local uvim_folder = vim.fn.fnamemodify(config_folder, ":h")
 
 local function create_config_autocmd(event, handler, pattern)
   local opts = { pattern = config_file, nested = true, group = augroup_config }
@@ -106,6 +108,7 @@ local function create_config_autocmd(event, handler, pattern)
   vim.api.nvim_create_autocmd(event, opts)
 end
 
+create_config_autocmd("BufWritePost", "source $MYVIMRC", uvim_folder .. '/shared/*.lua')
 create_config_autocmd("BufWritePost", "source $MYVIMRC")
 create_config_autocmd("SourcePre", config_refresh)
 create_config_autocmd("SourcePost", "LightlineReload")

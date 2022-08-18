@@ -50,7 +50,7 @@ It consists of shared core config written in Lua, wrapped into Vim and Neovim sp
 - [ ] Implement basic Neovim version
   - [x] options
   - [x] key mappings
-  - [ ] automatic Lua config reload on save
+  - [x] automatic Lua config reload on save
   - [ ] automatic PlugInstall
   - [x] plugins
   - [ ] auto commands
@@ -61,7 +61,7 @@ It consists of shared core config written in Lua, wrapped into Vim and Neovim sp
   - [ ] functions
   - [x] add hooks (for example, after plugins are installed)
 - [ ] Define interface of 'aj.config' Lua module
-- [ ] Find out how to write logs during confiration
+- [ ] Find out how to write logs during configuration
 - [ ] Implement robust LSP support
   - [ ] key mappings should be defined only in LSP enabled buffers
 
