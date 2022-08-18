@@ -9,16 +9,12 @@ local function from_opts(opts)
     lightline = {
       colorscheme = colors_name,
       active = {
-        right = {--[[ {'battery'}, {'clock'}, ]] {'tablemode'}, {'fileformat', 'fileencoding', 'filetype'}}
+        right = {{'tablemode'}, {'fileformat', 'fileencoding', 'filetype'}}
       },
       component = {
-        clock = '%{strftime("%b %d, %H:%M")}',
         filetype = '%{WebDevIconsGetFileTypeSymbol() . " (" . &filetype})',
         tablemode = '%{tablemode#IsActive() == 1 ? "TableMode" : ""}',
       },
-      component_function = {
-        battery = 'battery#component',
-      }
     },
     gruvbox_transp_bg = 1,
     gruvbox_bold = 0,
