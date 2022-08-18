@@ -92,6 +92,7 @@ for mapper, mappings in pairs(config.mappings) do
 end
 EOF
 
+# TODO: put filetype specific logic into shared code base
 autocmd FileType markdown setlocal nofoldenable
 
 # var custom_options = luaeval('vim.dict(_G.config.custom_options)')
