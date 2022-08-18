@@ -79,12 +79,22 @@ end
 
 vim.o.compatible = false
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = vim.fn.expand('$MYVIMRC'),
-  nested = true,
-  command = "source <afile>",
-  group = vim.api.nvim_create_augroup("config_reload", { clear = true })
-})
+local augroup_config = vim.api.nvim_create_augroup("config_reload", { clear = true })
+local config_file = vim.fn.expand('$MYVIMRC')
+
+local function create_config_autocmd(event, handler, pattern)
+  local opts = { pattern = config_file, nested = true, group = augroup_config }
+  opts.pattern = pattern or opts.pattern
+
+  if type(handler) == type('') then
+    opts.command = handler
+  else
+    opts.callback = handler
+  end
+  vim.api.nvim_create_autocmd(event, opts)
+end
+
+create_config_autocmd("BufWritePost", "source $MYVIMRC")
 
 local opts = {
   is_nvim = true,
