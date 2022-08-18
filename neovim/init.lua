@@ -1,9 +1,9 @@
 local function bootstrap_vimplug()
-  local vimplug_install_path = vim.fn.stdpath('data') .. '/site/autoload/plug.vim'
+  local install_path = vim.fn.stdpath('data') .. '/site/autoload/plug.vim'
 
-  if vim.fn.filereadable(vim.fn.expand(vimplug_install_path)) == 0 then
-    local vimplug_github_url = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    vim.fn.execute('!curl -fLo ' .. vimplug_install_path .. ' --create-dirs ' .. vimplug_github_url)
+  if vim.fn.filereadable(vim.fn.expand(install_path)) == 0 then
+    local git_url = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    vim.fn.execute('!curl -fLo ' .. install_path .. ' --create-dirs ' .. git_url)
   end
 end
 
