@@ -79,6 +79,10 @@ end
 
 vim.o.compatible = false
 
+local function config_refresh()
+  package.loaded['aj.config'] = nil
+end
+
 local augroup_config = vim.api.nvim_create_augroup("config_reload", { clear = true })
 local config_file = vim.fn.expand('$MYVIMRC')
 
@@ -95,6 +99,7 @@ local function create_config_autocmd(event, handler, pattern)
 end
 
 create_config_autocmd("BufWritePost", "source $MYVIMRC")
+create_config_autocmd("SourcePre", config_refresh)
 
 local opts = {
   is_nvim = true,
@@ -102,7 +107,6 @@ local opts = {
   has_guicolors = vim.fn.has('termguicolors') == 1
 }
 
-package.loaded['aj.config'] = nil
 local config = require('aj.config').get_config(opts)
 
 bootstrap_vimplug()
