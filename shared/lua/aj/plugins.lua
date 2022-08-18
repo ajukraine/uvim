@@ -6,44 +6,44 @@ local function extend(base, new)
   return base
 end
 
-local plugins = {
-  { 'dstein64/vim-startuptime', on = 'StartupTime' },
-
-  'ryanoasis/vim-devicons',
-  { 'mhinz/vim-startify', on = 'Startify' },
-
-  { 'khaveesh/vim-fish-syntax',           ['for'] = 'fish' },
-  { 'fladson/vim-kitty',                  ['for'] = { 'kitty', 'kitty-session' } },
-  { 'godlygeek/tabular',                  ['for'] = 'markdown' },
-  { 'preservim/vim-markdown',             ['for'] = 'markdown' },
-  {
-    'iamcco/markdown-preview.nvim',       ['for'] = 'markdown',
-
-    -- Currently can't pass Lua function as argument to Vim9 'world'
-    -- Due to https://github.com/vim/vim/issues/10587
-    -- So instead use Vim command as string
-    ['do'] = ':call mkdp#util#install()',
-  },
-  'dhruvasagar/vim-table-mode',
-
-  -- 'morhetz/gruvbox',
-  -- 'lifepillar/vim-gruvbox8',
-
-  -- 'lambdalisue/battery.vim',
-  'itchyny/lightline.vim',
-  'airblade/vim-gitgutter',
-
-  { 'junegunn/vim-easy-align', on = '<Plug>(EasyAlign)' },
-  'tpope/vim-unimpaired',
-
-  'kassio/neoterm',
-  'diepm/vim-rest-console',
-
-  'dense-analysis/ale',
-  'editorconfig/editorconfig-vim',
-}
-
 local function from_opts(opts)
+  local plugins = {
+    { 'dstein64/vim-startuptime', on = 'StartupTime' },
+
+    'ryanoasis/vim-devicons',
+    { 'mhinz/vim-startify', on = 'Startify' },
+
+    { 'khaveesh/vim-fish-syntax',           ['for'] = 'fish' },
+    { 'fladson/vim-kitty',                  ['for'] = { 'kitty', 'kitty-session' } },
+    { 'godlygeek/tabular',                  ['for'] = 'markdown' },
+    { 'preservim/vim-markdown',             ['for'] = 'markdown' },
+    {
+      'iamcco/markdown-preview.nvim',       ['for'] = 'markdown',
+
+      -- Currently can't pass Lua function as argument to Vim9 'world'
+      -- Due to https://github.com/vim/vim/issues/10587
+      -- So instead use Vim command as string
+      ['do'] = ':call mkdp#util#install()',
+    },
+    'dhruvasagar/vim-table-mode',
+
+    -- 'morhetz/gruvbox',
+    -- 'lifepillar/vim-gruvbox8',
+
+    -- 'lambdalisue/battery.vim',
+    'itchyny/lightline.vim',
+    'airblade/vim-gitgutter',
+
+    { 'junegunn/vim-easy-align', on = '<Plug>(EasyAlign)' },
+    'tpope/vim-unimpaired',
+
+    'kassio/neoterm',
+    'diepm/vim-rest-console',
+
+    'dense-analysis/ale',
+    'editorconfig/editorconfig-vim',
+  }
+
   if opts.is_nvim then
     extend(plugins, {
       'nathom/filetype.nvim',
