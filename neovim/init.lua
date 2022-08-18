@@ -83,6 +83,14 @@ local function config_refresh()
   package.loaded['aj.config'] = nil
 end
 
+local function lightline_reload()
+  vim.call('lightline#init')
+  vim.call('lightline#colorscheme')
+  vim.call('lightline#update')
+end
+
+vim.api.nvim_create_user_command("LightlineReload", lightline_reload, {})
+
 local augroup_config = vim.api.nvim_create_augroup("config_reload", { clear = true })
 local config_file = vim.fn.expand('$MYVIMRC')
 
@@ -100,6 +108,7 @@ end
 
 create_config_autocmd("BufWritePost", "source $MYVIMRC")
 create_config_autocmd("SourcePre", config_refresh)
+create_config_autocmd("SourcePost", "LightlineReload")
 
 local opts = {
   is_nvim = true,
