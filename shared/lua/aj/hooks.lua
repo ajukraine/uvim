@@ -29,7 +29,7 @@ local function from_opts(opts)
         percentage = 0.01,
       }
     }
-    require("colorizer").setup { }
+    require("colorizer").setup() 
     require("nvim-treesitter.configs").setup {
       ensure_installed = { "lua", "vim" },
       sync_install = false,
