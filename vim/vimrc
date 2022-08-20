@@ -20,7 +20,10 @@ augroup config_reload
 augroup END
 
 # Detect support of 'true colors'
-var has_guicolors = $COLORTERM == 'truecolor' && has('termguicolors') || has('gui_vimr') || exists('g:fvim_loaded')
+var has_guicolors = 
+  has('termguicolors') && ($COLORTERM == 'truecolor' || has('win32'))
+  || has('gui_vimr')
+  || exists('g:fvim_loaded')
 
 lua << EOF
 local opts = {
