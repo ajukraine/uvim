@@ -1,16 +1,28 @@
-local function bootstrap_vimplug()
-  local install_path = vim.fn.stdpath('data') .. '/site/autoload/plug.vim'
+local config_file = vim.fn.expand('$MYVIMRC')
+local config_folder = vim.fn.fnamemodify(config_file, ':h')
+local plugins_folder = config_folder .. '/data/plugged'
 
-  if vim.fn.filereadable(vim.fn.expand(install_path)) == 0 then
-    local git_url = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    vim.fn.execute('!curl -fLo ' .. install_path .. ' --create-dirs ' .. git_url)
+local function bootstrap_vimplug()
+  local vimplug_folder = plugins_folder .. '/vim-plug'
+
+  if vim.fn.isdirectory(vim.fn.expand(vimplug_folder)) == 0 then
+    local vimplug_repo_url = 'https://github.com/junegunn/vim-plug'
+
+    vim.fn.execute('!git clone ' .. vimplug_repo_url .. ' ' .. vimplug_folder)
   end
+
+  -- Autoload 'plug.vim' from cloned repo
+  vim.api.nvim_create_autocmd('FuncUndefined', {
+    pattern = 'plug#*',
+    command = 'source ' .. vimplug_folder .. '/plug.vim',
+    group = vim.api.nvim_create_augroup("autoload_vimplug", { clear = true })
+  })
 end
 
 local function configure_plugins(plugins)
   local Plug = vim.fn['plug#']
 
-  vim.call('plug#begin')
+  vim.call('plug#begin', plugins_folder)
 
   for i, plugin in ipairs(plugins) do
     local opts = {}
@@ -92,9 +104,6 @@ end
 vim.api.nvim_create_user_command("LightlineReload", lightline_reload, {})
 
 local augroup_config = vim.api.nvim_create_augroup("config_reload", { clear = true })
-local config_file = vim.fn.expand('$MYVIMRC')
-local config_folder = vim.fn.fnamemodify(config_file, ':h')
-local uvim_folder = vim.fn.fnamemodify(config_folder, ":h")
 
 local function create_config_autocmd(event, handler, pattern)
   local opts = { pattern = config_file, nested = true, group = augroup_config }
@@ -107,6 +116,8 @@ local function create_config_autocmd(event, handler, pattern)
   end
   vim.api.nvim_create_autocmd(event, opts)
 end
+
+local uvim_folder = vim.fn.fnamemodify(config_folder, ":h")
 
 create_config_autocmd("BufWritePost", "source $MYVIMRC", uvim_folder .. '/shared/*.lua')
 create_config_autocmd("BufWritePost", "source $MYVIMRC")
