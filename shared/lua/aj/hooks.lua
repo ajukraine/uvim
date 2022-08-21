@@ -9,8 +9,10 @@ local function from_opts(opts)
     require("filetype").setup {
       overrides = {
         literal = {
-          ["kitty.conf"] = "kitty",
-          ["vimrc"]      = "vim",
+          ["vimrc"] = "vim",
+        },
+        endswith = {
+          ["/kitty.*%.conf"] = "kitty",
         }
       }
     }
