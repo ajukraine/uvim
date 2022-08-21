@@ -11,6 +11,9 @@ local function from_opts(opts)
         literal = {
           ["vimrc"] = "vim",
         },
+        extensions = {
+          ["fish"] = "fish",
+        },
         endswith = {
           ["/kitty.*%.conf"] = "kitty",
         }
