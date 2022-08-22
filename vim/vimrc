@@ -93,6 +93,10 @@ for mapper, mappings in pairs(config.mappings) do
     vim.command(mapper .. ' ' .. keys .. ' ' .. action)
   end
 end
+
+for name, cmd in pairs(config.commands) do
+   vim.command('command ' .. name .. ' legacy ' .. cmd)
+end
 EOF
 
 # TODO: put filetype specific logic into shared code base

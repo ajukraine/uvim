@@ -60,8 +60,8 @@ It consists of shared core config written in Lua, wrapped into Vim and Neovim sp
   - [x] global varibles
   - [ ] functions
   - [x] add hooks (for example, after plugins are installed)
+- [x] Custom commands
 - [ ] Define interface of 'aj.config' Lua module
 - [ ] Find out how to write logs during configuration
 - [ ] Implement robust LSP support
   - [ ] key mappings should be defined only in LSP enabled buffers
-

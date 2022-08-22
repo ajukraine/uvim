@@ -16,6 +16,7 @@ return {
       mappings = get('aj.mappings'),
       globals  = get('aj.globals'),
       hooks    = get('aj.hooks'),
+      commands = get('aj.commands'),
     }
   end
 }

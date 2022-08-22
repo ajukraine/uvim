@@ -89,6 +89,12 @@ local function configure_custom_options(custom_options)
   end
 end
 
+local function configure_commands(commands)
+  for name, cmd in pairs(commands) do
+    vim.api.nvim_create_user_command(name, cmd, {})
+  end
+end
+
 vim.o.compatible = false
 
 local function config_refresh()
@@ -139,3 +145,4 @@ configure_plugins(config.plugins)
 trigger_hook(config.hooks, 'PostPlugins')
 configure_mappings(config.mappings)
 configure_custom_options(config.custom_options)
+configure_commands(config.commands)
