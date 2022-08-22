@@ -4,16 +4,17 @@ local function from_opts(opts)
   local globals = {
     transparent_background = false,
     colors_name = colors_name,
-    ['battery#component_format'] = '%s %v%%',
     ['lightline#bufferline#enable_devicons'] = 1, -- TODO: we don't do that
     lightline = {
       colorscheme = colors_name,
       active = {
-        right = {{'tablemode'}, {'fileformat', 'fileencoding', 'filetype'}}
+        left = { {'mode', 'paste'}, {'readonly', 'filename', 'modified'}, {'pwd'} },
+        right = { {'tablemode'}, {'fileformat', 'fileencoding', 'filetype'} },
       },
       component = {
         filetype = '%{WebDevIconsGetFileTypeSymbol() . " (" . &filetype})',
         tablemode = '%{tablemode#IsActive() == 1 ? "TableMode" : ""}',
+        pwd = '%{getcwd()}',
       },
     },
     gruvbox_transp_bg = 1,
