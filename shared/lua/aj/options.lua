@@ -91,9 +91,9 @@ o.esckeys = false -- Not supported in Neovim
 o.updatetime = 100
 
 function from_opts(opts)
-  if opts.has_guicolors then
-    o.termguicolors = true
+  o.termguicolors = opts.has_guicolors
 
+  if opts.has_guicolors then
     -- Vim doesn't support explicitly "true color" in non "xterm-" terminals (see ':h xterm-true-color)
     -- For example, Alacritty
     -- https://github.com/alacritty/alacritty/issues/109#issuecomment-440353106

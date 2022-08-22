@@ -27,14 +27,18 @@ local function from_opts(opts)
         kitty = { enabled = true, font = "+4" },
       }
     }
-    require("catppuccin").setup {
-      transparent_background = true,
-      dim_inactive = {
-        enabled = false,
-        percentage = 0.01,
+
+    if opts.has_guicolors then
+      require("catppuccin").setup {
+        transparent_background = true,
+        dim_inactive = {
+          enabled = false,
+          percentage = 0.01,
+        }
       }
-    }
-    require("colorizer").setup() 
+      require("colorizer").setup() 
+    end
+
     require("nvim-treesitter.configs").setup {
       ensure_installed = { "lua", "vim" },
       sync_install = false,

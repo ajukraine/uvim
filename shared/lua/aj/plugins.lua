@@ -27,9 +27,6 @@ local function from_opts(opts)
     },
     'dhruvasagar/vim-table-mode',
 
-    -- 'morhetz/gruvbox',
-    -- 'lifepillar/vim-gruvbox8',
-
     -- 'lambdalisue/battery.vim',
     'itchyny/lightline.vim',
     'airblade/vim-gitgutter',
@@ -51,8 +48,6 @@ local function from_opts(opts)
       'folke/zen-mode.nvim',
 
       { 'folke/tokyonight.nvim', ['branch'] = 'main' },
-      'catppuccin/nvim',
-      'norcalli/nvim-colorizer.lua',
 
       { 'nvim-treesitter/nvim-treesitter', ['do'] = ':TSUpdate' },
       'nvim-treesitter/nvim-treesitter-textobjects',
@@ -72,6 +67,16 @@ local function from_opts(opts)
       'mattn/vim-lsp-settings',
       'rhysd/vim-lsp-ale',
       'tpope/vim-commentary',
+    })
+  end
+
+  if (opts.has_guicolors and opts.is_nvim) then
+    extend(plugins, {
+      'catppuccin/nvim',
+      'norcalli/nvim-colorizer.lua',
+    })
+  else
+    extend(plugins, {
       'lifepillar/vim-gruvbox8',
     })
   end

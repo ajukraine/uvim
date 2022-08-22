@@ -1,5 +1,5 @@
 local function from_opts(opts)
-  local colors_name = opts.is_nvim and 'catppuccin' or 'gruvbox8'
+  local colors_name = opts.is_nvim and opts.has_guicolors and 'catppuccin' or 'gruvbox8'
 
   local globals = {
     transparent_background = false,
