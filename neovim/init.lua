@@ -133,7 +133,7 @@ create_config_autocmd("SourcePost", "LightlineReload")
 local opts = {
   is_nvim = true,
   is_vim = false,
-  has_guicolors = vim.fn.has('termguicolors') == 1
+  has_guicolors = vim.fn.has('termguicolors') == 1 and vim.fn.getenv('COLORTERM') == 'truecolor'
 }
 
 local config = require('aj.config').get_config(opts)
