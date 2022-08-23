@@ -18,21 +18,43 @@ It consists of shared core config written in Lua, wrapped into Vim and Neovim sp
     ├── lua -> ../shared/lua/
     └── vimrc                 # Entry point for Vim
 ```
-### config.lua
 
-### Quality attributes
+## Quality attributes
 
 - Compatibility: Vim 8.2+, Neovim latest stable (0.7) and dev (0.8)
 - Performance: startup time under from 100ms (desired) to 200ms (acceptable)
 
-#### Quality test cases (WIP)
+### Benchmarking
 
-| Key | Description                                             |
-|-----|---------------------------------------------------------|
-| QA1 | Works with Vim 8.2+                                     |
-| QA2 | Works with latest stable of Neovim (currently 0.7)      |
-| QA3 | Works with latest dev version of Neovim (currently 0.8) |
-| QA4 | Startup time doesn't exceed 200ms                       |
+In order to track startup time, there is useful script at `test/bench.sh`.
+
+The script relies on:
+ - bash
+ - awk
+ - [vim-startuptime](https://github.com/rhysd/vim-startuptime) (install with `go install github.com/rhysd/vim-startuptime@latest`)
+
+When you run the `bench.sh`, it will write smth like this:
+```
+bench: Running vim-startuptime...
+bench: Total avg time: 167.449200ms
+bench: error: Total avg time exceeds 100ms
+```
+The line `bench: error: ...` is printed only in case of exceeding 100ms limit and puts exit code to 1.
+
+#### Git hook for 'pre-push'
+The `bench.sh` was designed to be used as 'pre-push' Git hook. Just create a symlink like:
+```
+ln -s ../../test/bench.sh .git/hooks/pre-push
+```
+
+### Quality test cases (WIP)
+
+| Key | Description                                                     |
+|-----|-----------------------------------------------------------------|
+| QA1 | Works with Vim 8.2+                                             |
+| QA2 | Works with latest stable of Neovim (currently 0.7)              |
+| QA3 | Works with latest dev version of Neovim (currently 0.8)         |
+| QA4 | Startup time doesn't exceed 100ms on main machine (MacBook Pro) |
 
 ## TODO
 
