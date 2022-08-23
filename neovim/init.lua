@@ -95,8 +95,6 @@ local function configure_commands(commands)
   end
 end
 
-vim.o.compatible = false
-
 local function config_refresh()
   package.loaded['aj.config'] = nil
 end
@@ -142,7 +140,7 @@ bootstrap_vimplug()
 configure_options(config.options)
 configure_globals(config.globals)
 configure_plugins(config.plugins)
-require('impatient').enable_profile()
+require('impatient')
 trigger_hook(config.hooks, 'PostPlugins')
 configure_mappings(config.mappings)
 configure_custom_options(config.custom_options)

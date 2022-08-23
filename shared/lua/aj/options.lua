@@ -12,7 +12,7 @@ o.background = 'dark'
 -- Avoid configuring Vim with special section on start and end of the opened file
 o.modelines = 0
 
--- Enable faster rendering (fount in https://gist.github.com/simonista/8703722)
+-- Enable faster rendering (found in https://gist.github.com/simonista/8703722)
 o.ttyfast = true
 
 -- Disable annoying bell sounds

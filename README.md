@@ -47,6 +47,7 @@ It consists of shared core config written in Lua, wrapped into Vim and Neovim sp
   - [ ] syntax/filetype instructions
   - [x] global varibles
   - [ ] functions
+  - [ ] handle termcap options just for Vim
 - [ ] Implement basic Neovim version
   - [x] options
   - [x] key mappings
