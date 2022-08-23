@@ -8,6 +8,7 @@ end
 
 local function from_opts(opts)
   local plugins = {
+    'lewis6991/impatient.nvim',
     { 'dstein64/vim-startuptime', on = 'StartupTime' },
 
     'ryanoasis/vim-devicons',
