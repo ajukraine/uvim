@@ -56,6 +56,7 @@ local function from_opts(opts)
       'nvim-treesitter/nvim-treesitter-textobjects',
       'RRethy/nvim-treesitter-textsubjects',
       'nvim-treesitter/playground',
+      'RRethy/nvim-treesitter-endwise',
 
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope.nvim', ['branch'] = '0.1.x' },

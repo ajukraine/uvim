@@ -87,12 +87,14 @@ local function from_opts(opts)
           ['i;'] = 'textsubjects-container-inner',
         },
       },
+      endwise = { enable = true },
     }
     require('Comment').setup()
   end)
 
   return hooks
 end
+
 
 return {
   get = from_opts
