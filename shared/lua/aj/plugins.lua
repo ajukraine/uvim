@@ -8,6 +8,8 @@ end
 
 local function from_opts(opts)
   local plugins = {
+    '~/dev/tree-sitter-awk/',
+
     'lewis6991/impatient.nvim',
     { 'dstein64/vim-startuptime', on = 'StartupTime' },
 
@@ -53,6 +55,7 @@ local function from_opts(opts)
       { 'nvim-treesitter/nvim-treesitter', ['do'] = ':TSUpdate' },
       'nvim-treesitter/nvim-treesitter-textobjects',
       'RRethy/nvim-treesitter-textsubjects',
+      'nvim-treesitter/playground',
 
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope.nvim', ['branch'] = '0.1.x' },
