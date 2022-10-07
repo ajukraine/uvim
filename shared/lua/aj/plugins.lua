@@ -60,6 +60,7 @@ local function from_opts(opts)
 
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope.nvim', ['branch'] = '0.1.x' },
+      { 'nvim-telescope/telescope-fzf-native.nvim', ['do'] = 'make'  },
 
       'numToStr/Comment.nvim',
     })

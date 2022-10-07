@@ -90,6 +90,10 @@ local function from_opts(opts)
       endwise = { enable = true },
     }
     require('Comment').setup()
+
+    local telescope = require('telescope')
+    telescope.setup()
+    telescope.load_extension('fzf')
   end)
 
   return hooks
