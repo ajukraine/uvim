@@ -68,6 +68,10 @@ local function from_opts(opts)
       'numToStr/Comment.nvim',
 
       'adelarsq/neofsharp.vim',
+
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify',
+      "folke/noice.nvim",
     })
   end
 
