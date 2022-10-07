@@ -42,6 +42,8 @@ local function from_opts(opts)
 
     'dense-analysis/ale',
     'editorconfig/editorconfig-vim',
+
+    'hashivim/vim-terraform',
   }
 
   if opts.is_nvim then
