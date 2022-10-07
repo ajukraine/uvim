@@ -63,6 +63,8 @@ local function from_opts(opts)
       { 'nvim-telescope/telescope-fzf-native.nvim', ['do'] = 'make'  },
 
       'numToStr/Comment.nvim',
+
+      'adelarsq/neofsharp.vim',
     })
   end
 

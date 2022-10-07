@@ -13,6 +13,7 @@ local function from_opts(opts)
         },
         extensions = {
           ["fish"] = "fish",
+          ["fs"]   = "fsharp",
         },
         endswith = {
           ["/kitty.*%.conf"] = "kitty",
