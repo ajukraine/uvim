@@ -44,6 +44,7 @@ local function from_opts(opts)
     'editorconfig/editorconfig-vim',
 
     'hashivim/vim-terraform',
+    'OmniSharp/omnisharp-vim',
   }
 
   if opts.is_nvim then

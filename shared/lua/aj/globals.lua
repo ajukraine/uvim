@@ -55,12 +55,17 @@ local function from_opts(opts)
 
     ale_virtualtext_cursor = 1,
     ale_virtualtext_prefix = '   ',
+    ale_linters = {
+      ['cs'] = { 'OmniSharp' }
+    },
 
     loaded_remote_plugins = 0,
     loaded_python3_provider = 0,
     loaded_ruby_provider = 0,
     loaded_perl_provider = 0,
     loaded_node_provider = 0,
+
+    OmniSharp_highlighting = 0,
   }
 
   return globals
