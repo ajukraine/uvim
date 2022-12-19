@@ -81,7 +81,11 @@ end
 
 local function configure_custom_options(custom_options)
   if vim.g.transparent_background then
-    vim.cmd [[autocmd! Colorscheme * hi Normal guibg=NONE ctermbg=NONE]]
+    vim.api.nvim_create_autocmd("Colorscheme", {
+      pattern = "*",
+      callback = function () vim.cmd.highlight({ "Normal", "guibg=NONE", "ctermbg=NONE" }) end,
+      group = vim.api.nvim_create_augroup("colorscheme_transparent_bg", { clear = true }),
+    })
   end
 
   if vim.g.colors_name then
