@@ -85,7 +85,7 @@ local function configure_custom_options(custom_options)
   end
 
   if vim.g.colors_name then
-    vim.cmd([[colorscheme ]] .. vim.g.colors_name)
+    vim.cmd.colorscheme(vim.g.colors_name)
   end
 end
 
