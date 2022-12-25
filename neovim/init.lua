@@ -101,6 +101,7 @@ end
 
 local function config_refresh()
   package.loaded['aj.config'] = nil
+  package.loaded['aj.lazy'] = nil -- temporary workaround
 end
 
 local function lightline_reload()
@@ -135,12 +136,15 @@ create_config_autocmd("SourcePost", "LightlineReload")
 local opts = {
   is_nvim = true,
   is_vim = false,
-  has_guicolors = vim.fn.has('termguicolors') == 1 and vim.fn.getenv('COLORTERM') == 'truecolor'
+  has_guicolors = vim.fn.has('termguicolors') == 1 and vim.fn.getenv('COLORTERM') == 'truecolor',
+  config_folder = config_folder,
 }
 
 local config = require('aj.config').get_config(opts)
+local lazy = require('aj.lazy')
 
 bootstrap_vimplug()
+lazy.bootstrap(opts)
 configure_options(config.options)
 configure_globals(config.globals)
 configure_plugins(config.plugins)
