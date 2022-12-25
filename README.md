@@ -88,3 +88,4 @@ ln -s ../../test/bench.sh .git/hooks/pre-push
 - [ ] Find out how to write logs during configuration
 - [ ] Implement robust LSP support
   - [ ] key mappings should be defined only in LSP enabled buffers
+- [ ] Fix ALE's errors highlights (they are not colored correctly)
