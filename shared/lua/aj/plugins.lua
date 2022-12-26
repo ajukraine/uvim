@@ -50,7 +50,7 @@ local function from_opts(opts)
   if opts.is_nvim then
     extend(plugins, {
       'nathom/filetype.nvim',
-      'github/copilot.vim',
+      -- 'github/copilot.vim',
       'folke/zen-mode.nvim',
 
       { 'folke/tokyonight.nvim', ['branch'] = 'main' },
