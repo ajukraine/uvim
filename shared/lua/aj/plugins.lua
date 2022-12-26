@@ -8,9 +8,9 @@ end
 
 local function from_opts(opts)
   local plugins = {
-    '~/dev/tree-sitter-awk/',
+    -- '~/dev/tree-sitter-awk/',
 
-    'lewis6991/impatient.nvim',
+    -- 'lewis6991/impatient.nvim',
     { 'dstein64/vim-startuptime', on = 'StartupTime' },
 
     'ryanoasis/vim-devicons',
