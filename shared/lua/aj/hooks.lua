@@ -35,7 +35,14 @@ local function from_opts(opts)
         dim_inactive = {
           enabled = false,
           percentage = 0.01,
-        }
+        },
+        custom_highlights = function (colors)
+          return {
+            -- Avoid nvim-notify's transparent background warning at startup
+            -- https://github.com/rcarriga/nvim-notify/issues/159
+            NotifyBackground = { bg = colors.base }
+          }
+        end
       }
       require("colorizer").setup() 
     end
