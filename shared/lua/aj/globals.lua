@@ -53,7 +53,7 @@ local function from_opts(opts)
     -- See more at: https://github.com/vim-ruby/vim-ruby/issues/248
     ruby_path = '/usr/bin/ruby',
 
-    ale_echo_cursor = 0,
+    ale_echo_cursor = 1,
     ale_virtualtext_cursor = 1,
     ale_virtualtext_prefix = '   ',
     ale_linters = {

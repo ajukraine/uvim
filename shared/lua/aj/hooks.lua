@@ -137,6 +137,13 @@ local function from_opts(opts)
           },
         },
       },
+      routes = {
+        {
+          filter = { event = "cmdline", kind = "cmdline", find ="echom a:message" },
+          view = "mini",
+          opts = { skip = false },
+        }
+      }
     }
   end)
 
