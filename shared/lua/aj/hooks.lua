@@ -103,6 +103,14 @@ local function from_opts(opts)
     telescope.setup()
     telescope.load_extension('fzf')
 
+    require('notify').setup {
+      on_open = function (win)
+        -- Prevent focus on notify windows
+        -- https://github.com/rcarriga/nvim-notify/issues/119#issuecomment-1210281504
+        vim.api.nvim_win_set_config(win, { focusable = false })
+      end,
+    }
+
     require('noice').setup {
       views = {
         cmdline_popup = {
