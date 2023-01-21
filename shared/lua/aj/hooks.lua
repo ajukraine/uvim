@@ -102,8 +102,24 @@ local function from_opts(opts)
     require('Comment').setup()
 
     local telescope = require('telescope')
-    telescope.setup()
+    telescope.setup {
+      extensions = {
+        file_browser = {
+          hijack_netrw = true,
+          grouped      = true, -- Group folders and files
+          hidden       = true,
+          initial_mode = 'normal', -- I always switch to normal mode
+          sorting_strategy = 'ascending', -- More usual sorting
+          layout_config = {
+            prompt_position = 'top', -- More usual location
+            anchor = 'N', -- Stick to top edge (optional)
+            scroll_speed = 1, -- Scroll 1 line
+          },
+        }
+      }
+    }
     telescope.load_extension('fzf')
+    telescope.load_extension('file_browser')
 
     require('notify').setup {
       on_open = function (win)
@@ -146,6 +162,9 @@ local function from_opts(opts)
             winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
           },
         },
+      },
+      messages = {
+        view = "mini",
       },
       routes = {
         {

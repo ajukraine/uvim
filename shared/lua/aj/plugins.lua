@@ -64,6 +64,7 @@ local function from_opts(opts)
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope.nvim', ['branch'] = '0.1.x' },
       { 'nvim-telescope/telescope-fzf-native.nvim', ['do'] = 'make'  },
+      { 'nvim-telescope/telescope-file-browser.nvim' },
 
       { 'numToStr/Comment.nvim', keys = 'gcc', lazy = true },
 
@@ -72,6 +73,7 @@ local function from_opts(opts)
       'MunifTanjim/nui.nvim',
       'rcarriga/nvim-notify',
       { "folke/noice.nvim", event = 'VeryLazy' },
+      { 'nvim-tree/nvim-web-devicons' },
     })
   end
 

@@ -20,11 +20,12 @@ local mappings = {
 
     ['<leader>j'] = '<cmd>call VrcQuery()<CR>',
 
-    ['<leader><leader>'] = '<cmd>Telescope<CR>',
-    ['<leader><leader>f'] = '<cmd>Telescope find_files<CR>',
-    ['<leader><leader>g'] = '<cmd>Telescope git_files<CR>',
-    ['<leader><leader>l'] = '<cmd>Telescope live_grep<CR>',
-    ['<leader><leader>b'] = '<cmd>Telescope buffers<CR>',
+    ['<leader><leader><leader>'] = '<cmd>Telescope builtin include_extensions=true<CR>',
+    ['<leader><leader>f']        = '<cmd>Telescope find_files<CR>',
+    ['<leader><leader>d']        = '<cmd>Telescope file_browser<CR>',
+    ['<leader><leader>g']        = '<cmd>Telescope git_files<CR>',
+    ['<leader><leader>l']        = '<cmd>Telescope live_grep<CR>',
+    ['<leader><leader>b']        = '<cmd>Telescope buffers<CR>',
 
     ['\\<BS>'] = '<cmd>StartupTime --tries 10<CR>',
     ['\\<CR>'] = '<cmd>so $MYVIMRC<CR>',
