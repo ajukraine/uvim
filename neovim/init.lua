@@ -2,45 +2,6 @@ local config_file = vim.fn.expand('$MYVIMRC')
 local config_folder = vim.fn.fnamemodify(config_file, ':h')
 local plugins_folder = config_folder .. '/data/plugged'
 
-local function bootstrap_vimplug()
-  local vimplug_folder = plugins_folder .. '/vim-plug'
-
-  if vim.fn.isdirectory(vim.fn.expand(vimplug_folder)) == 0 then
-    local vimplug_repo_url = 'https://github.com/junegunn/vim-plug'
-
-    vim.fn.execute('!git clone ' .. vimplug_repo_url .. ' ' .. vimplug_folder)
-  end
-
-  -- Autoload 'plug.vim' from cloned repo
-  vim.api.nvim_create_autocmd('FuncUndefined', {
-    pattern = 'plug#*',
-    command = 'source ' .. vimplug_folder .. '/plug.vim',
-    group = vim.api.nvim_create_augroup("autoload_vimplug", { clear = true })
-  })
-end
-
-local function configure_plugins(plugins)
-  local Plug = vim.fn['plug#']
-
-  vim.call('plug#begin', plugins_folder)
-
-  for i, plugin in ipairs(plugins) do
-    local opts = {}
-    if type(plugin) == type({}) then
-      opts = plugin
-      plugin = plugin[1]
-      table.remove(opts, 1)
-    end
-    if vim.tbl_isempty(opts) then
-      Plug(plugin)
-    else
-      Plug(plugin, opts)
-    end
-  end
-
-  vim.call('plug#end')
-end
-
 local function configure_options(options)
   for name, value in pairs(options) do
     if vim.fn.exists('+' .. name) == 0 then
@@ -145,17 +106,38 @@ local opts = {
   config_folder = config_folder,
 }
 
-local config = require('aj.config').get_config(opts)
-local lazy = require('aj.lazy')
+local timings = {}
+function add_timing(label, duration)
+  table.insert(timings, label .. ' : ' .. (duration / 1000 / 1000) .. ' ms')
+end
+function print_timings()
+  for i, msg in ipairs(timings) do
+    -- print(msg)
+  end
+end
 
-bootstrap_vimplug()
-lazy.bootstrap(opts)
-configure_options(config.options)
-configure_globals(config.globals)
--- configure_plugins(config.plugins)
-lazy.configure_plugins(config.plugins, opts)
+function t(label, fun)
+  return function (...)
+    local ts = vim.loop.hrtime()
+    result = fun(...)
+    add_timing('t ' .. label, vim.loop.hrtime() - ts)
+
+    return result
+  end
+end
+
+local config = require('aj.config').get_config(opts)
+local use_lazy = true
+local plugin_manager = use_lazy and require('aj.lazy') or require('aj.vimplug')
+
+t('bootstrap', plugin_manager.bootstrap)(opts)
+t('configure_options', configure_options)(config.options)
+t('configure_globals', configure_globals)(config.globals)
+t('configure_plugins', plugin_manager.configure_plugins)(config.plugins, opts)
 -- require('impatient')
-trigger_hook(config.hooks, 'PostPlugins')
-configure_mappings(config.mappings)
-configure_custom_options(config.custom_options)
-configure_commands(config.commands)
+t('trigger_hook', trigger_hook)(config.hooks, 'PostPlugins')
+t('configure_mappings', configure_mappings)(config.mappings)
+t('configure_custom_options', configure_custom_options)(config.custom_options)
+t('configure_commands', configure_commands)(config.commands)
+
+print_timings()

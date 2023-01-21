@@ -6,28 +6,30 @@ local function from_opts(opts)
   if not opts.is_nvim then return hooks end
 
   table.insert(hooks['PostPlugins'], function ()
-    require("filetype").setup {
-      overrides = {
-        literal = {
-          ["vimrc"] = "vim",
-        },
-        extensions = {
-          ["fish"] = "fish",
-          ["fs"]   = "fsharp",
-        },
-        endswith = {
-          ["/kitty.*%.conf"] = "kitty",
-        }
-      }
-    }
+    pcall(require, 'impatient')
+
+    -- require("filetype").setup {
+    --   overrides = {
+    --     literal = {
+    --       ["vimrc"] = "vim",
+    --     },
+    --     extensions = {
+    --       ["fish"] = "fish",
+    --       ["fs"]   = "fsharp",
+    --     },
+    --     endswith = {
+    --       ["/kitty.*%.conf"] = "kitty",
+    --     }
+    --   }
+    -- }
 
     -- TODO: make it possible to setup plugin on demand, when it's loaded
-    require("zen-mode").setup {
-      window = { height = 0.7 },
-      plugins = {
-        kitty = { enabled = true, font = "+4" },
-      }
-    }
+    -- require("zen-mode").setup {
+    --   window = { height = 0.7 },
+    --   plugins = {
+    --     kitty = { enabled = true, font = "+4" },
+    --   }
+    -- }
 
     if opts.has_guicolors then
       require("catppuccin").setup {
@@ -44,7 +46,7 @@ local function from_opts(opts)
           }
         end
       }
-      require("colorizer").setup() 
+      -- require("colorizer").setup() 
     end
 
     local parser_config = require("nvim-treesitter.parsers").get_parser_configs()

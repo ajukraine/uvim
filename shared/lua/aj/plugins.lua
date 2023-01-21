@@ -28,7 +28,7 @@ local function from_opts(opts)
       -- So instead use Vim command as string
       ['do'] = ':call mkdp#util#install()',
     },
-    'dhruvasagar/vim-table-mode',
+    { 'dhruvasagar/vim-table-mode', on = 'TableModeEnable' },
 
     -- 'lambdalisue/battery.vim',
     'itchyny/lightline.vim',
@@ -49,29 +49,29 @@ local function from_opts(opts)
 
   if opts.is_nvim then
     extend(plugins, {
-      'nathom/filetype.nvim',
+      -- 'nathom/filetype.nvim',
       -- 'github/copilot.vim',
-      'folke/zen-mode.nvim',
+      { 'folke/zen-mode.nvim', on = 'ZenMode' },
 
-      { 'folke/tokyonight.nvim', ['branch'] = 'main' },
+      { 'folke/tokyonight.nvim', ['branch'] = 'main', ['lazy'] = true },
 
       { 'nvim-treesitter/nvim-treesitter', ['do'] = ':TSUpdate' },
       'nvim-treesitter/nvim-treesitter-textobjects',
       'RRethy/nvim-treesitter-textsubjects',
-      'nvim-treesitter/playground',
+      { 'nvim-treesitter/playground', on = 'TSPlaygroundToggle' },
       'RRethy/nvim-treesitter-endwise',
 
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope.nvim', ['branch'] = '0.1.x' },
       { 'nvim-telescope/telescope-fzf-native.nvim', ['do'] = 'make'  },
 
-      'numToStr/Comment.nvim',
+      { 'numToStr/Comment.nvim', keys = 'gcc', lazy = true },
 
       'adelarsq/neofsharp.vim',
 
       'MunifTanjim/nui.nvim',
       'rcarriga/nvim-notify',
-      "folke/noice.nvim",
+      { "folke/noice.nvim", event = 'VeryLazy' },
     })
   end
 
@@ -87,8 +87,8 @@ local function from_opts(opts)
 
   if (opts.has_guicolors and opts.is_nvim) then
     extend(plugins, {
-      'catppuccin/nvim',
-      'norcalli/nvim-colorizer.lua',
+      { 'catppuccin/nvim', ['lazy'] = true },
+      { 'norcalli/nvim-colorizer.lua', event = 'BufReadPre' },
     })
   else
     extend(plugins, {

@@ -21,6 +21,9 @@ local function configure_plugins(plugins, opts)
       ['for']    = 'ft',
       ['do']     = 'build',
       ['branch'] = 'branch',
+      ['lazy']   = 'lazy',
+      ['keys']   = 'keys',
+      ['event']  = 'event',
     }
     local plugin_spec = { }
 

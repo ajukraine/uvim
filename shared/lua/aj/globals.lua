@@ -13,7 +13,7 @@ local function from_opts(opts)
       },
       component = {
         filetype = '%{WebDevIconsGetFileTypeSymbol() . " (" . &filetype})',
-        tablemode = '%{tablemode#IsActive() == 1 ? "TableMode" : ""}',
+        tablemode = '%{exists(\'*tablemode#IsActive\') && tablemode#IsActive() == 1 ? "TableMode" : ""}',
         pwd = '%{getcwd()}',
       },
     },
