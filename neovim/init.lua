@@ -102,6 +102,7 @@ end
 local function config_refresh()
   package.loaded['aj.config'] = nil
   package.loaded['aj.lazy'] = nil -- temporary workaround
+  package.loaded['aj.vimplug'] = nil -- temporary workaround
 end
 
 local function lightline_reload()
@@ -115,14 +116,18 @@ vim.api.nvim_create_user_command("LightlineReload", lightline_reload, {})
 local augroup_config = vim.api.nvim_create_augroup("config_reload", { clear = true })
 
 local function create_config_autocmd(event, handler, pattern)
-  local opts = { pattern = config_file, nested = true, group = augroup_config }
-  opts.pattern = pattern or opts.pattern
+  local opts = {
+    pattern = pattern or config_file,
+    nested = true,
+    group = augroup_config
+  }
 
   if type(handler) == type('') then
     opts.command = handler
   else
     opts.callback = handler
   end
+
   vim.api.nvim_create_autocmd(event, opts)
 end
 
